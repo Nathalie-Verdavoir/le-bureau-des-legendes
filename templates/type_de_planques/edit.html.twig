@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit TypeDePlanques{% endblock %}
+
+{% block body %}
+    <h1>Edit TypeDePlanques</h1>
+
+    {{ include('type_de_planques/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('type_de_planques_index') }}">back to list</a>
+
+    {{ include('type_de_planques/_delete_form.html.twig') }}
+{% endblock %}

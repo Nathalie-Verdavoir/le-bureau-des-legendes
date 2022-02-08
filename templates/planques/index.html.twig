@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Planques index{% endblock %}
+
+{% block body %}
+    <h1>Planques index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Adresse</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for planque in planques %}
+            <tr>
+                <td>{{ planque.id }}</td>
+                <td>{{ planque.adresse }}</td>
+                <td>
+                    <a href="{{ path('planques_show', {'id': planque.id}) }}">show</a>
+                    <a href="{{ path('planques_edit', {'id': planque.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('planques_new') }}">Create new</a>
+{% endblock %}

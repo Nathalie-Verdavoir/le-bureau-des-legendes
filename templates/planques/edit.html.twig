@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Planques{% endblock %}
+
+{% block body %}
+    <h1>Edit Planques</h1>
+
+    {{ include('planques/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('planques_index') }}">back to list</a>
+
+    {{ include('planques/_delete_form.html.twig') }}
+{% endblock %}
