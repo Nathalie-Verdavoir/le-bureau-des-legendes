@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap');
+
+body {
+ background-image:  url(../img/bg.jpg);
+ background-repeat: no-repeat;
+ background-attachment: fixed;
+ background-position: right;
+ background-color: #121013;
+ color: rgb(236, 225, 225);
+ font-family: 'Inconsolata', monospace;
+}
+
+h1,
+form {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    margin-left: 3rem;
+}
+
+label,
+input,
+select,
+#agents_date_de_naissance {
+    font-size: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 3rem;
+}
+
+.btn {
+    font-size: 1rem;
+    background-color: #272f3b;
+    border: 0;
+    color: aliceblue;
+    margin: 1rem;
+}
+
+.admin-buttons {
+    position: absolute;
+
+    top: 1rem;
+    right: 1rem;
+}
+.table,
+.listes {
+    width: 70%;
+    font-size: 1.5rem;
+    background-color: #272f3b9a;
+    color: rgb(236, 225, 225);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 3rem;
+    border-radius: 2rem;
+    padding: 20%;
+}
+body > table > tbody > tr > td,
+body > table > tbody > tr > td > .btn {
+    line-height: 1.5rem;
+    margin: auto;
+}
