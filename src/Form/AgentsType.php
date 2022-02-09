@@ -3,11 +3,13 @@
 namespace App\Form;
 
 use App\Entity\Agents;
-use App\Entity\NomDeCode;
 use App\Entity\Pays;
 use App\Entity\Specialites;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\TextType as TypeTextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,28 +18,23 @@ class AgentsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom')
-            ->add('prenom')
-            ->add('date_de_naissance')
+            ->add('nom', TypeTextType::class)
+            ->add('prenom', TypeTextType::class)
+            ->add('date_de_naissance', BirthdayType::class)
             ->add('specialites', EntityType::class, array(
-                'mapped' => false,
                 'class' => Specialites::class,
                 'choice_label' => 'nom',
                 'placeholder' => 'spécialités',
-                'label' => 'spécialités'
+                'label' => 'Spécialités',
+                'expanded' =>true ,
+                'multiple'=> true
+                
             ))
-            ->add('nom_de_code', EntityType::class, array(
-                'mapped' => false,
-                'class' => NomDeCode::class,
-                'choice_label' => 'code',
-                'placeholder' => 'Nom De Code',
-                'label' => 'Nom De Code'
-            ))
+            ->add('nom_de_code', NomDeCodeAgent::class)
+
             ->add('nationalite', EntityType::class, array(
-                'mapped' => false,
                 'class' => Pays::class,
-                'choice_label' => 'nom',
-               # 'placeholder' => 'Pays d\'origine',
+                'choice_label' => 'nom',              
                 'label' => 'Pays d\'origine'
             ))
             ->add('missions')

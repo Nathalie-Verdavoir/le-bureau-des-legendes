@@ -26,7 +26,7 @@ class Planques
     #[ORM\JoinColumn(nullable: false)]
     private $pays;
 
-    #[ORM\ManyToOne(targetEntity: TypeDePlanques::class, inversedBy: 'planques')]
+    #[ORM\ManyToOne(targetEntity: TypeDePlanques::class, inversedBy: 'planques', cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
     private $type;
 

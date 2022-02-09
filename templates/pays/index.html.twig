@@ -8,17 +8,13 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Code</th>
                 <th>Nom</th>
-                <th>actions</th>
+                <th>Voir/Modifier</th>
             </tr>
         </thead>
         <tbody>
         {% for pay in pays %}
             <tr>
-                <td>{{ pay.id }}</td>
-                <td>{{ pay.code }}</td>
                 <td>{{ pay.nom }}</td>
                 <td>
                     <a type="button" class="btn btn-primary" href="{{ path('pays_show', {'id': pay.id}) }}">show</a>

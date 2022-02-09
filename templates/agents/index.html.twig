@@ -1,27 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Agents index{% endblock %}
+{% block title %}Agents{% endblock %}
 
 {% block body %}
-    <h1>Agents index</h1><a type="button" class="btn btn-primary" href="/">Accueil</a>
+    <h1>Agents</h1><a type="button" class="btn btn-primary" href="/">Accueil</a>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Nom de code</th>
                 <th>Nom</th>
-                <th>Prenom</th>
-                <th>Date_de_naissance</th>
-                <th>actions</th>
+                <th>Prénom</th>
+                <th>Date de naissance</th>
+                <th>Spécialités</th>
+                <th>Pays</th>
+                <th>Voir/Modifier</th>
             </tr>
         </thead>
         <tbody>
         {% for agent in agents %}
             <tr>
-                <td>{{ agent.id }}</td>
+                <td>{{ agent.getNomDeCode.code }}</td>
                 <td>{{ agent.nom }}</td>
                 <td>{{ agent.prenom }}</td>
-                <td>{{ agent.dateDeNaissance ? agent.dateDeNaissance|date('Y-m-d') : '' }}</td>
+                <td>{{ agent.dateDeNaissance ? agent.dateDeNaissance|date('d/m/Y') : '' }}</td>
+                <td> {% for specialites_id in agent.getSpecialites %}-{{specialites_id|spaceless }}<br>{% endfor %}</td>
+                <td>{{ agent.nationalite }}</td>
                 <td>
                     <a type="button" class="btn btn-primary" href="{{ path('agents_show', {'id': agent.id}) }}">show</a>
                     <a type="button" class="btn btn-primary" href="{{ path('agents_edit', {'id': agent.id}) }}">edit</a>

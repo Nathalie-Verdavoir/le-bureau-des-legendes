@@ -16,17 +16,17 @@
                 <td>{{ contact.nom }}</td>
             </tr>
             <tr>
-                <th>Prenom</th>
+                <th>Prénom</th>
                 <td>{{ contact.prenom }}</td>
             </tr>
             <tr>
-                <th>Date_de_naissance</th>
+                <th>Date de naissance</th>
                 <td>{{ contact.dateDeNaissance ? contact.dateDeNaissance|date('Y-m-d') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a type="button" class="btn btn-primary" href="{{ path('contacts_index') }}">back to list</a>
+    <a type="button" class="btn btn-primary" href="{{ path('contacts_index') }}">Retour</a>
 
     <a type="button" class="btn btn-primary" href="{{ path('contacts_edit', {'id': contact.id}) }}">edit</a>
 

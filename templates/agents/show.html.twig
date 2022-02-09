@@ -8,25 +8,33 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ agent.id }}</td>
-            </tr>
-            <tr>
                 <th>Nom</th>
                 <td>{{ agent.nom }}</td>
             </tr>
             <tr>
-                <th>Prenom</th>
+                <th>Prénom</th>
                 <td>{{ agent.prenom }}</td>
             </tr>
             <tr>
-                <th>Date_de_naissance</th>
-                <td>{{ agent.dateDeNaissance ? agent.dateDeNaissance|date('Y-m-d') : '' }}</td>
+                <th>Date de naissance</th>
+                <td>{{ agent.dateDeNaissance ? agent.dateDeNaissance|date('d-m-Y') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Nom De Code</th>
+                <td>{{ agent.getNomDeCode.code }}</td>
+            </tr>
+            <tr>
+                <th>Spécialités</th>
+                <td> {% for specialites_id in agent.getSpecialites %}-{{specialites_id|spaceless }}<br>{% endfor %}</td>
+            </tr>
+            <tr>
+                <th>Pays d'origine</th>
+                <td>{{ agent.nationalite }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a type="button" class="btn btn-primary" href="{{ path('agents_index') }}">back to list</a>
+    <a type="button" class="btn btn-primary" href="{{ path('agents_index') }}">Retour</a>
 
     <a type="button" class="btn btn-primary" href="{{ path('agents_edit', {'id': agent.id}) }}">edit</a>
 

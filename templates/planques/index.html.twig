@@ -8,16 +8,20 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Nom de code</th>
                 <th>Adresse</th>
-                <th>actions</th>
+                <th>Pays</th>
+                <th>Type</th>
+                <th>Voir/Modifier</th>
             </tr>
         </thead>
         <tbody>
         {% for planque in planques %}
             <tr>
-                <td>{{ planque.id }}</td>
+                <td>{{ planque.getCode.code }}</td>
                 <td>{{ planque.adresse }}</td>
+                <td>{{ planque.pays }}</td>
+                <td>{{ planque.type }}</td>
                 <td>
                     <a type="button" class="btn btn-primary" href="{{ path('planques_show', {'id': planque.id}) }}">show</a>
                     <a type="button" class="btn btn-primary" href="{{ path('planques_edit', {'id': planque.id}) }}">edit</a>

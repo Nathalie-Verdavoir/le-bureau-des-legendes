@@ -15,9 +15,6 @@ class Pays
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 3)]
-    private $code;
-
     #[ORM\Column(type: 'string', length: 50)]
     private $nom;
 
@@ -48,18 +45,6 @@ class Pays
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getCode(): ?string
-    {
-        return $this->code;
-    }
-
-    public function setCode(string $code): self
-    {
-        $this->code = $code;
-
-        return $this;
     }
 
     public function getNom(): ?string
@@ -222,5 +207,9 @@ class Pays
         }
 
         return $this;
+    }
+    public function __toString()
+    {
+        return $this->nom;
     }
 }

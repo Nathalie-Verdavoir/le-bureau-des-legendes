@@ -12,7 +12,6 @@ class PaysType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('code')
             ->add('nom')
         ;
     }

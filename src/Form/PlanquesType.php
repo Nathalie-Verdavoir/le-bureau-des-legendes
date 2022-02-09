@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Planques;
+use App\Entity\Pays;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,9 +15,15 @@ class PlanquesType extends AbstractType
     {
         $builder
             ->add('adresse')
-            ->add('code')
-            ->add('pays')
-            ->add('type')
+            ->add('code', NomDeCodeAgent::class)
+            ->add('pays', EntityType::class, array(
+                'class' => Pays::class,
+                'choice_label' => 'nom',
+                'choice_value' => 'id',
+               # 'placeholder' => 'Pays d\'origine',
+                'label' => 'Pays d\'origine'
+            ))
+            ->add('type', TypeDePlanquesType::class, array('label' =>'Type de Planque'))
             ->add('missions')
         ;
     }

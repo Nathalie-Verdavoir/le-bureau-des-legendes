@@ -16,17 +16,17 @@
                 <td>{{ cible.nom }}</td>
             </tr>
             <tr>
-                <th>Prenom</th>
+                <th>Prénom</th>
                 <td>{{ cible.prenom }}</td>
             </tr>
             <tr>
-                <th>Date_de_naissance</th>
+                <th>Date de naissance</th>
                 <td>{{ cible.dateDeNaissance ? cible.dateDeNaissance|date('Y-m-d') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a type="button" class="btn btn-primary" href="{{ path('cibles_index') }}">back to list</a>
+    <a type="button" class="btn btn-primary" href="{{ path('cibles_index') }}">Retour</a>
 
     <a type="button" class="btn btn-primary" href="{{ path('cibles_edit', {'id': cible.id}) }}">edit</a>
 
