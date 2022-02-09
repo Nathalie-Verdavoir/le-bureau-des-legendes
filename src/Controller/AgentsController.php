@@ -23,7 +23,6 @@ class AgentsController extends AbstractController
     }
 
     #[Route('/new', name: 'agents_new', methods: ['GET', 'POST'])]
-    #[IsGranted("ROLE_USER")]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $agent = new Agents();

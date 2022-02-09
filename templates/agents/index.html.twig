@@ -3,7 +3,7 @@
 {% block title %}Agents index{% endblock %}
 
 {% block body %}
-    <h1>Agents index</h1>
+    <h1>Agents index</h1><a type="button" class="btn btn-primary" href="/">Accueil</a>
 
     <table class="table">
         <thead>
@@ -23,8 +23,8 @@
                 <td>{{ agent.prenom }}</td>
                 <td>{{ agent.dateDeNaissance ? agent.dateDeNaissance|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('agents_show', {'id': agent.id}) }}">show</a>
-                    <a href="{{ path('agents_edit', {'id': agent.id}) }}">edit</a>
+                    <a type="button" class="btn btn-primary" href="{{ path('agents_show', {'id': agent.id}) }}">show</a>
+                    <a type="button" class="btn btn-primary" href="{{ path('agents_edit', {'id': agent.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -35,5 +35,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('agents_new') }}">Create new</a>
+    <a type="button" class="btn btn-primary" href="{{ path('agents_new') }}">Create new</a>
 {% endblock %}

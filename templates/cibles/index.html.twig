@@ -3,7 +3,7 @@
 {% block title %}Cibles index{% endblock %}
 
 {% block body %}
-    <h1>Cibles index</h1>
+    <h1>Cibles index</h1><a type="button" class="btn btn-primary" href="/">Accueil</a>
 
     <table class="table">
         <thead>
@@ -23,8 +23,8 @@
                 <td>{{ cible.prenom }}</td>
                 <td>{{ cible.dateDeNaissance ? cible.dateDeNaissance|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('cibles_show', {'id': cible.id}) }}">show</a>
-                    <a href="{{ path('cibles_edit', {'id': cible.id}) }}">edit</a>
+                    <a type="button" class="btn btn-primary" href="{{ path('cibles_show', {'id': cible.id}) }}">show</a>
+                    <a type="button" class="btn btn-primary" href="{{ path('cibles_edit', {'id': cible.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -35,5 +35,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('cibles_new') }}">Create new</a>
+    <a type="button" class="btn btn-primary" href="{{ path('cibles_new') }}">Create new</a>
 {% endblock %}

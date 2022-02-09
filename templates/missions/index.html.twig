@@ -3,7 +3,7 @@
 {% block title %}Missions index{% endblock %}
 
 {% block body %}
-    <h1>Missions index</h1>
+    <h1>Missions index</h1><a type="button" class="btn btn-primary" href="/">Accueil</a>
 
     <table class="table">
         <thead>
@@ -25,8 +25,8 @@
                 <td>{{ mission.dateDebut ? mission.dateDebut|date('Y-m-d') : '' }}</td>
                 <td>{{ mission.dateFin ? mission.dateFin|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('missions_show', {'id': mission.id}) }}">show</a>
-                    <a href="{{ path('missions_edit', {'id': mission.id}) }}">edit</a>
+                    <a type="button" class="btn btn-primary" href="{{ path('missions_show', {'id': mission.id}) }}">show</a>
+                    <a type="button" class="btn btn-primary" href="{{ path('missions_edit', {'id': mission.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -37,5 +37,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('missions_new') }}">Create new</a>
+    <a type="button" class="btn btn-primary" href="{{ path('missions_new') }}">Create new</a>
 {% endblock %}

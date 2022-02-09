@@ -18,9 +18,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('type_de_missions_index') }}">back to list</a>
+    <a type="button" class="btn btn-primary" href="{{ path('type_de_missions_index') }}">back to list</a>
 
-    <a href="{{ path('type_de_missions_edit', {'id': type_de_mission.id}) }}">edit</a>
+    <a type="button" class="btn btn-primary" href="{{ path('type_de_missions_edit', {'id': type_de_mission.id}) }}">edit</a>
 
     {{ include('type_de_missions/_delete_form.html.twig') }}
 {% endblock %}

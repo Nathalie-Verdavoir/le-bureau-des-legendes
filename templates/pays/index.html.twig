@@ -3,7 +3,7 @@
 {% block title %}Pays index{% endblock %}
 
 {% block body %}
-    <h1>Pays index</h1>
+    <h1>Pays index</h1><a type="button" class="btn btn-primary" href="/">Accueil</a>
 
     <table class="table">
         <thead>
@@ -21,8 +21,8 @@
                 <td>{{ pay.code }}</td>
                 <td>{{ pay.nom }}</td>
                 <td>
-                    <a href="{{ path('pays_show', {'id': pay.id}) }}">show</a>
-                    <a href="{{ path('pays_edit', {'id': pay.id}) }}">edit</a>
+                    <a type="button" class="btn btn-primary" href="{{ path('pays_show', {'id': pay.id}) }}">show</a>
+                    <a type="button" class="btn btn-primary" href="{{ path('pays_edit', {'id': pay.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -33,5 +33,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('pays_new') }}">Create new</a>
+    <a type="button" class="btn btn-primary" href="{{ path('pays_new') }}">Create new</a>
 {% endblock %}
