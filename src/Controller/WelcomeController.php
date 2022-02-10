@@ -12,9 +12,8 @@ class WelcomeController extends AbstractController
     #[Route('/')]
     public function index(): Response
     {
-        $name = 'Nat';
         return $this->render('welcome.html.twig', [
-            'name' => $name,
+            'date' => date('H:i:s')
         ]);
     }
 }

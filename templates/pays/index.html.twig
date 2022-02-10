@@ -13,21 +13,38 @@
             </tr>
         </thead>
         <tbody>
+        {% set item = 0 %}
         {% for pay in pays %}
-            <tr>
-                <td>{{ pay.nom }}</td>
-                <td>
-                    <a type="button" class="btn" href="{{ path('pays_show', {'id': pay.id}) }}">show</a>
-                    <a type="button" class="btn" href="{{ path('pays_edit', {'id': pay.id}) }}">edit</a>
-                </td>
-            </tr>
+            {% if item  < 10 %}
+                <tr class="{{ item }}">
+                    <td>{{ pay.nom }}</td>
+                    <td>
+                        <a type="button" class="btn" href="{{ path('pays_show', {'id': pay.id}) }}">show</a>
+                        <a type="button" class="btn" href="{{ path('pays_edit', {'id': pay.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr class="visually-hidden">
+                    <td>{{ item }}  {{pay.nom }}</td>
+                    <td>
+                        <a type="button" class="btn" href="{{ path('pays_show', {'id': pay.id}) }}">show</a>
+                        <a type="button" class="btn" href="{{ path('pays_edit', {'id': pay.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% endif %}
+            {% set item = item + 1 %}
         {% else %}
             <tr>
                 <td colspan="4">no records found</td>
             </tr>
         {% endfor %}
+        
         </tbody>
     </table>
-
+     {% set numberOfBtn = item // 10 %}
+        {% for i in 0..numberOfBtn %}
+            <a type="button" class="btn paging" href="/">{{ i+1 }}</a>
+         {% endfor %}
+         <br>
     <a type="button" class="btn" href="{{ path('pays_new') }}">Create new</a>
 {% endblock %}

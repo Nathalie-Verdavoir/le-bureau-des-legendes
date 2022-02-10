@@ -24,12 +24,13 @@ body {
 
 h1,
 form {
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-    margin-left: 3rem;
+    margin-top: 4rem;
+    margin-inline: 3rem;
 }
 
-.nav{
+.nav,
+.fond-gris {
+    width: auto;
     font-size: 1.5rem;
     background-color: #272f3b9a;
     color: rgb(236, 225, 225);
@@ -69,8 +70,17 @@ select,
     margin-top: 1rem;
     margin-bottom: 1rem;
     margin-left: 3rem;
-    border-radius: 2rem;
+    border-radius: 1rem 1rem 0 0;
     padding: 20%;
+}
+
+.paging {
+    display: inline-flex;
+    margin: 0;
+    margin-inline-start: 1rem;
+    width: 2rem;
+    padding-left: auto;
+    justify-content: center
 }
 
 body > table > tbody > tr > td,
