@@ -11,8 +11,8 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: App\Entity\User
-                property: username
+                class: 'App\Entity\User'
+                property: 'username'
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -24,13 +24,19 @@ security:
                 login_path: login
                 check_path: login
             logout:
-                path: app_logout
+                path: logout
 
             # configure the maximum login attempts in a custom period of time
-            #login_throttling:
+            login_throttling:
                 #max_attempts: 3
                 #interval: '15 minutes'
-
+            remember_me:
+                secret:   '%kernel.secret%' # required
+                # lifetime: 604800 1 week in seconds
+                # by default, the feature is enabled by checking a
+                # checkbox in the login form (see below), uncomment the
+                # following line to always enable it.
+                always_remember_me: true
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 
