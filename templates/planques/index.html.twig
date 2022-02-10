@@ -3,7 +3,7 @@
 {% block title %}Planques index{% endblock %}
 
 {% block body %}
-    <h1>Planques index</h1><a type="button" class="btn btn-primary" href="/">Accueil</a>
+    <h1>Planques index</h1><a type="button" class="btn" href="/">Accueil</a>
 
     <table class="table">
         <thead>
@@ -23,8 +23,8 @@
                 <td>{{ planque.pays }}</td>
                 <td>{{ planque.type }}</td>
                 <td>
-                    <a type="button" class="btn btn-primary" href="{{ path('planques_show', {'id': planque.id}) }}">show</a>
-                    <a type="button" class="btn btn-primary" href="{{ path('planques_edit', {'id': planque.id}) }}">edit</a>
+                    <a type="button" class="btn" href="{{ path('planques_show', {'id': planque.id}) }}">show</a>
+                    <a type="button" class="btn" href="{{ path('planques_edit', {'id': planque.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -35,5 +35,5 @@
         </tbody>
     </table>
 
-    <a type="button" class="btn btn-primary" href="{{ path('planques_new') }}">Create new</a>
+    <a type="button" class="btn" href="{{ path('planques_new') }}">Create new</a>
 {% endblock %}

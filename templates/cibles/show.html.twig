@@ -26,9 +26,9 @@
         </tbody>
     </table>
 
-    <a type="button" class="btn btn-primary" href="{{ path('cibles_index') }}">Retour</a>
+    <a type="button" class="btn" href="{{ path('cibles_index') }}">Retour</a>
 
-    <a type="button" class="btn btn-primary" href="{{ path('cibles_edit', {'id': cible.id}) }}">edit</a>
+    <a type="button" class="btn" href="{{ path('cibles_edit', {'id': cible.id}) }}">edit</a>
 
     {{ include('cibles/_delete_form.html.twig') }}
 {% endblock %}

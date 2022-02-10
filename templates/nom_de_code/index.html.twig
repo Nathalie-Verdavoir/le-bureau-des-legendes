@@ -3,7 +3,7 @@
 {% block title %}NomDeCode index{% endblock %}
 
 {% block body %}
-    <h1>NomDeCode index</h1><a type="button" class="btn btn-primary" href="/">Accueil</a>
+    <h1>NomDeCode index</h1><a type="button" class="btn" href="/">Accueil</a>
 
     <table class="table">
         <thead>
@@ -19,8 +19,8 @@
                 <td>{{ nom_de_code.id }}</td>
                 <td>{{ nom_de_code.code }}</td>
                 <td>
-                    <a type="button" class="btn btn-primary" href="{{ path('nom_de_code_show', {'id': nom_de_code.id}) }}">show</a>
-                    <a type="button" class="btn btn-primary" href="{{ path('nom_de_code_edit', {'id': nom_de_code.id}) }}">edit</a>
+                    <a type="button" class="btn" href="{{ path('nom_de_code_show', {'id': nom_de_code.id}) }}">show</a>
+                    <a type="button" class="btn" href="{{ path('nom_de_code_edit', {'id': nom_de_code.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +31,5 @@
         </tbody>
     </table>
 
-    <a type="button" class="btn btn-primary" href="{{ path('nom_de_code_new') }}">Create new</a>
+    <a type="button" class="btn" href="{{ path('nom_de_code_new') }}">Create new</a>
 {% endblock %}

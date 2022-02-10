@@ -1,13 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap');
 
+html, 
 body {
- background-image:  url(../img/bg.jpg);
- background-repeat: no-repeat;
- background-attachment: fixed;
- background-position: right;
- background-color: #121013;
- color: rgb(236, 225, 225);
- font-family: 'Inconsolata', monospace;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+body {
+    background-image:  url(../img/bg.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position-x: center;
+    
+    background-position-y: bottom;
+    background-color: #121013;
+    color: rgb(236, 225, 225);
+    font-family: 'Inconsolata', monospace;
 }
 
 h1,
@@ -15,6 +27,12 @@ form {
     margin-top: 3rem;
     margin-bottom: 3rem;
     margin-left: 3rem;
+}
+
+.nav{
+    font-size: 1.5rem;
+    background-color: #272f3b9a;
+    color: rgb(236, 225, 225);
 }
 
 label,
@@ -41,6 +59,7 @@ select,
     top: 1rem;
     right: 1rem;
 }
+
 .table,
 .listes {
     width: 70%;
@@ -53,6 +72,7 @@ select,
     border-radius: 2rem;
     padding: 20%;
 }
+
 body > table > tbody > tr > td,
 body > table > tbody > tr > td > .btn {
     line-height: 1.5rem;
