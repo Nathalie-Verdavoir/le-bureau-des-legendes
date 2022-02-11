@@ -19,6 +19,7 @@ class PaysRepository extends ServiceEntityRepository
         parent::__construct($registry, Pays::class);
     }
 
+    
     // /**
     //  * @return Pays[] Returns an array of Pays objects
     //  */
@@ -47,4 +48,5 @@ class PaysRepository extends ServiceEntityRepository
         ;
     }
     */
+
 }

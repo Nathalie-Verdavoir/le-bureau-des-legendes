@@ -12,8 +12,6 @@ class WelcomeController extends AbstractController
     #[Route('/')]
     public function index(): Response
     {
-        return $this->render('welcome.html.twig', [
-            'date' => date('H:i:s')
-        ]);
+        return $this->render('welcome.html.twig');
     }
 }

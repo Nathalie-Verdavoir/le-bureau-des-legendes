@@ -13,7 +13,11 @@
                 <th>Description</th>
                 <th>Date_debut</th>
                 <th>Date_fin</th>
+                {% if app.user %}
                 <th>Voir/Modifier</th>
+                {% else %}
+                 <th>Voir</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -26,7 +30,9 @@
                 <td>{{ mission.dateFin ? mission.dateFin|date('Y-m-d') : '' }}</td>
                 <td>
                     <a type="button" class="btn" href="{{ path('missions_show', {'id': mission.id}) }}">show</a>
+                     {% if app.user %}
                     <a type="button" class="btn" href="{{ path('missions_edit', {'id': mission.id}) }}">edit</a>
+                     {% endif %}
                 </td>
             </tr>
         {% else %}

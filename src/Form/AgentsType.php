@@ -30,7 +30,7 @@ class AgentsType extends AbstractType
                 'multiple'=> true
                 
             ))
-            ->add('nom_de_code', NomDeCodeAgent::class)
+            ->add('nom_de_code', NomDeCodeAjouter::class)
 
             ->add('nationalite', EntityType::class, array(
                 'class' => Pays::class,

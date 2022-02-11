@@ -36,6 +36,10 @@ form {
     color: rgb(236, 225, 225);
 }
 
+.centre {
+    text-align: center;
+}
+
 label,
 input,
 select,
@@ -88,3 +92,27 @@ body > table > tbody > tr > td > .btn {
     line-height: 1.5rem;
     margin: auto;
 }
+
+.yellow {
+    color: yellow;
+}
+/* animations */
+.announcement {
+     overflow: hidden;
+}
+
+.announcement > :first-child {  
+    display: inline-block;
+    padding-left: 100vw;
+    white-space: nowrap;
+    animation: announce 45s infinite linear;
+  }
+
+  @keyframes announce {
+    0% {
+      transform: translate3d(0,0,0);      /* position initiale à droite */
+    }
+    100% {
+      transform: translate3d(-100%,0,0);  /* position finale à gauche */
+    }
+  }

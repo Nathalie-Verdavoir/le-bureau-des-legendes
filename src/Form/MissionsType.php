@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Missions;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,10 +15,15 @@ class MissionsType extends AbstractType
         $builder
             ->add('titre')
             ->add('description')
-            ->add('date_debut')
-            ->add('date_fin')
-            ->add('nom_de_code')
-            ->add('pays')
+            ->add('date_debut', DateType::class, [
+                'data' =>  new \DateTime("now"),
+            ])
+            ->add('date_fin', DateType::class, [
+                'data' =>  new \DateTime("now"),
+            ])
+            ->add('nom_de_code', NomDeCodeAjouter::class)
+            ->add('pays', PaysEtPlanquesPourMissionType::class)
+           
             ->add('agents')
             ->add('contacts')
             ->add('Cibles')

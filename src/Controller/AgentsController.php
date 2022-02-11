@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
+#[Security("is_granted('ROLE_ADMIN')", statusCode: 404)]
 #[Route('/agents')]
 class AgentsController extends AbstractController
 {
@@ -23,7 +24,6 @@ class AgentsController extends AbstractController
         ]);
     }
 
-    #[Security("is_granted('ROLE_ADMIN')", statusCode: 404)]
     #[Route('/new', name: 'agents_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {

@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 #[Route('/missions')]
 class MissionsController extends AbstractController
@@ -22,6 +23,7 @@ class MissionsController extends AbstractController
         ]);
     }
 
+    #[Security("is_granted('ROLE_ADMIN')", statusCode: 404)]
     #[Route('/new', name: 'missions_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -50,6 +52,7 @@ class MissionsController extends AbstractController
         ]);
     }
 
+    #[Security("is_granted('ROLE_ADMIN')", statusCode: 404)]
     #[Route('/{id}/edit', name: 'missions_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Missions $mission, EntityManagerInterface $entityManager): Response
     {
@@ -68,6 +71,7 @@ class MissionsController extends AbstractController
         ]);
     }
 
+    #[Security("is_granted('ROLE_ADMIN')", statusCode: 404)]
     #[Route('/{id}', name: 'missions_delete', methods: ['POST'])]
     public function delete(Request $request, Missions $mission, EntityManagerInterface $entityManager): Response
     {
