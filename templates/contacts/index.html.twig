@@ -8,7 +8,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>Date de naissance</th>
@@ -18,7 +17,6 @@
         <tbody>
         {% for contact in contacts %}
             <tr>
-                <td>{{ contact.id }}</td>
                 <td>{{ contact.nom }}</td>
                 <td>{{ contact.prenom }}</td>
                 <td>{{ contact.dateDeNaissance ? contact.dateDeNaissance|date('Y-m-d') : '' }}</td>
@@ -34,6 +32,11 @@
         {% endfor %}
         </tbody>
     </table>
-
+ {% if pageCount  is defined and pageCount  > 1 %}
+        {% for i in 1..pageCount %}
+            <a type="button" class="btn paging" href="/contacts/list/{{ i }}">{{ i }}</a>
+         {% endfor %}
+         {% endif %}
+         <br>
     <a type="button" class="btn" href="{{ path('contacts_new') }}">Create new</a>
 {% endblock %}

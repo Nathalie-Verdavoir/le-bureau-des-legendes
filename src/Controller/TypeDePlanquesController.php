@@ -80,4 +80,36 @@ class TypeDePlanquesController extends AbstractController
 
         return $this->redirectToRoute('type_de_planques_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/list/{page<\d+>}', name:'type_de_planques_index')]
+    public function getItemsByPage($page = 1,TypeDePlanquesRepository $typeDePlanquesRepository )
+    {
+        $query = $typeDePlanquesRepository  ->createQueryBuilder('i')
+                                            ->orderBy('i.nom', 'ASC')
+                                            ->getQuery();
+        //set page size
+        $pageSize = '10';
+
+        // load doctrine Paginator
+        $paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
+
+        // you can get total items
+        $totalItems = count($paginator);
+
+        // get total pages
+        $pageCount = ceil($totalItems / $pageSize);
+
+        // now get one page's items:
+        $paginator
+            ->getQuery()
+            ->setFirstResult($pageSize * ($page-1)) // set the offset
+            ->setMaxResults($pageSize); // set the limit
+
+        return $this->render('type_de_planques/index.html.twig', [
+                'type_de_planques' => $paginator,
+                'pageCount' => $pageCount
+            ]);
+        // return stuff..
+    // return [$userList, $totalItems, $pageCount];
+    }
 }

@@ -8,7 +8,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>Date de naissance</th>
@@ -18,7 +17,6 @@
         <tbody>
         {% for cible in cibles %}
             <tr>
-                <td>{{ cible.id }}</td>
                 <td>{{ cible.nom }}</td>
                 <td>{{ cible.prenom }}</td>
                 <td>{{ cible.dateDeNaissance ? cible.dateDeNaissance|date('Y-m-d') : '' }}</td>
@@ -34,6 +32,11 @@
         {% endfor %}
         </tbody>
     </table>
-
+{% if pageCount  is defined and pageCount  > 1 %}
+        {% for i in 1..pageCount %}
+            <a type="button" class="btn paging" href="/cibles/list/{{ i }}">{{ i }}</a>
+         {% endfor %}
+         {% endif %}
+         <br>
     <a type="button" class="btn" href="{{ path('cibles_new') }}">Create new</a>
 {% endblock %}

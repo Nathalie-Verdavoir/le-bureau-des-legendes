@@ -8,7 +8,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Etat</th>
                 <th>Voir/Modifier</th>
             </tr>
@@ -16,7 +15,6 @@
         <tbody>
         {% for status in statuses %}
             <tr>
-                <td>{{ status.id }}</td>
                 <td>{{ status.etat }}</td>
                 <td>
                     <a type="button" class="btn" href="{{ path('status_show', {'id': status.id}) }}">show</a>
@@ -30,6 +28,11 @@
         {% endfor %}
         </tbody>
     </table>
-
+{% if pageCount  is defined and pageCount  > 1 %}
+        {% for i in 1..pageCount %}
+            <a type="button" class="btn paging" href="/status/list/{{ i }}">{{ i }}</a>
+         {% endfor %}
+         {% endif %}
+         <br>
     <a type="button" class="btn" href="{{ path('status_new') }}">Create new</a>
 {% endblock %}

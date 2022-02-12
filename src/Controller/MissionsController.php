@@ -82,4 +82,35 @@ class MissionsController extends AbstractController
 
         return $this->redirectToRoute('missions_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/list/{page<\d+>}', name:'missions_index')]
+    public function getItemsByPage($page = 1, MissionsRepository $missionsRepository)
+    {
+        $query = $missionsRepository    ->createQueryBuilder('i')
+                                        ->orderBy('i.titre', 'ASC')
+                                        ->getQuery();
+
+        //set page size
+        $pageSize = '10';
+
+        // load doctrine Paginator
+        $paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
+
+        // you can get total items
+        $totalItems = count($paginator);
+
+        // get total pages
+        $pageCount = ceil($totalItems / $pageSize);
+
+        // now get one page's items:
+        $paginator
+            ->getQuery()
+            ->setFirstResult($pageSize * ($page-1)) // set the offset
+            ->setMaxResults($pageSize); // set the limit
+
+        return $this->render('missions/index.html.twig', [
+                'missions' => $paginator,
+                'pageCount' => $pageCount
+            ]);
+    }
 }

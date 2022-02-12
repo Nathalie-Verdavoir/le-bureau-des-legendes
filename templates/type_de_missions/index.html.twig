@@ -8,7 +8,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
                 <th>Voir/Modifier</th>
             </tr>
@@ -16,7 +15,6 @@
         <tbody>
         {% for type_de_mission in type_de_missions %}
             <tr>
-                <td>{{ type_de_mission.id }}</td>
                 <td>{{ type_de_mission.nom }}</td>
                 <td>
                     <a type="button" class="btn" href="{{ path('type_de_missions_show', {'id': type_de_mission.id}) }}">show</a>
@@ -30,6 +28,11 @@
         {% endfor %}
         </tbody>
     </table>
-
+{% if pageCount  is defined and pageCount  > 1 %}
+        {% for i in 1..pageCount %}
+            <a type="button" class="btn paging" href="/type_de_missions/list/{{ i }}">{{ i }}</a>
+         {% endfor %}
+         {% endif %}
+         <br>
     <a type="button" class="btn" href="{{ path('type_de_missions_new') }}">Create new</a>
 {% endblock %}

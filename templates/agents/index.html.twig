@@ -38,6 +38,11 @@
         {% endfor %}
         </tbody>
     </table>
-
+{% if pageCount  is defined and pageCount  > 1 %}
+        {% for i in 1..pageCount %}
+            <a type="button" class="btn paging" href="/agents/list/{{ i }}">{{ i }}</a>
+         {% endfor %}
+         {% endif %}
+         <br>
     <a type="button" class="btn btn-primary" href="{{ path('agents_new') }}">Create new</a>
 {% endblock %}

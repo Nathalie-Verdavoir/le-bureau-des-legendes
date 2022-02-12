@@ -8,7 +8,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Titre</th>
                 <th>Description</th>
                 <th>Date_debut</th>
@@ -23,7 +22,6 @@
         <tbody>
         {% for mission in missions %}
             <tr>
-                <td>{{ mission.id }}</td>
                 <td>{{ mission.titre }}</td>
                 <td>{{ mission.description }}</td>
                 <td>{{ mission.dateDebut ? mission.dateDebut|date('Y-m-d') : '' }}</td>
@@ -42,6 +40,11 @@
         {% endfor %}
         </tbody>
     </table>
-
+ {% if pageCount  is defined and pageCount  > 1 %}
+        {% for i in 1..pageCount %}
+            <a type="button" class="btn paging" href="/missions/list/{{ i }}">{{ i }}</a>
+         {% endfor %}
+         {% endif %}
+         <br>
     <a type="button" class="btn" href="{{ path('missions_new') }}">Create new</a>
 {% endblock %}

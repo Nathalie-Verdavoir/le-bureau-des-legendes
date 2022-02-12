@@ -80,4 +80,35 @@ class ContactsController extends AbstractController
 
         return $this->redirectToRoute('contacts_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/list/{page<\d+>}', name:'contacts_index')]
+    public function getItemsByPage($page = 1, ContactsRepository $contactsRepository)
+    {
+        $query = $contactsRepository    ->createQueryBuilder('i')
+                                        ->orderBy('i.nom', 'ASC')
+                                        ->getQuery();
+
+        //set page size
+        $pageSize = '10';
+
+        // load doctrine Paginator
+        $paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
+
+        // you can get total items
+        $totalItems = count($paginator);
+
+        // get total pages
+        $pageCount = ceil($totalItems / $pageSize);
+
+        // now get one page's items:
+        $paginator
+            ->getQuery()
+            ->setFirstResult($pageSize * ($page-1)) // set the offset
+            ->setMaxResults($pageSize); // set the limit
+
+        return $this->render('contacts/index.html.twig', [
+                'contacts' => $paginator,
+                'pageCount' => $pageCount
+            ]);
+    }
 }
