@@ -6,6 +6,7 @@ use App\Repository\MissionsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: MissionsRepository::class)]
 class Missions
@@ -26,7 +27,7 @@ class Missions
     private $nom_de_code;
 
     #[ORM\ManyToOne(targetEntity: Pays::class, inversedBy: 'missions')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private $pays;
 
     #[ORM\ManyToMany(targetEntity: Agents::class, inversedBy: 'missions')]
@@ -47,6 +48,8 @@ class Missions
     private $statut;
 
     #[ORM\ManyToMany(targetEntity: Planques::class, inversedBy: 'missions')]
+    #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotBlank()]
     private $planques;
 
     #[ORM\ManyToOne(targetEntity: Specialites::class, inversedBy: 'missions')]
@@ -274,5 +277,11 @@ class Missions
         $this->date_fin = $date_fin;
 
         return $this;
+    }
+    
+    
+    public function __toString()
+    {
+        return $this->titre;
     }
 }
