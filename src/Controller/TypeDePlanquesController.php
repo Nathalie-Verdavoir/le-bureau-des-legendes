@@ -35,7 +35,9 @@ class TypeDePlanquesController extends AbstractController
             $entityManager->persist($typeDePlanque);
             $entityManager->flush();
 
-            return $this->redirectToRoute('type_de_planques_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('type_de_planques_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('type_de_planques/new.html.twig', [
@@ -61,7 +63,9 @@ class TypeDePlanquesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('type_de_planques_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('type_de_planques_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('type_de_planques/edit.html.twig', [
@@ -78,11 +82,13 @@ class TypeDePlanquesController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('type_de_planques_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('type_de_planques_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
     }
 
     #[Route('/list/{page<\d+>}', name:'type_de_planques_index')]
-    public function getItemsByPage($page = 1,TypeDePlanquesRepository $typeDePlanquesRepository )
+    public function getItemsByPage(TypeDePlanquesRepository $typeDePlanquesRepository,int $page = 1 )
     {
         $query = $typeDePlanquesRepository  ->createQueryBuilder('i')
                                             ->orderBy('i.nom', 'ASC')

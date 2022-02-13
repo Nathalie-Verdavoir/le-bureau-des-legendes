@@ -34,8 +34,11 @@ class MissionsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($mission);
             $entityManager->flush();
-
-            return $this->redirectToRoute('missions_index', [], Response::HTTP_SEE_OTHER);
+/*
+            return $this->redirectToRoute('missions_index',array(
+                'page' => $page = 1,
+                ),  Response::HTTP_SEE_OTHER);
+                */
         }
 
         return $this->renderForm('missions/new.html.twig', [
@@ -62,7 +65,9 @@ class MissionsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('missions_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('missions_index',array(
+                'page' => $page = 1,
+                ), Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('missions/edit.html.twig', [
@@ -79,12 +84,13 @@ class MissionsController extends AbstractController
             $entityManager->remove($mission);
             $entityManager->flush();
         }
-
-        return $this->redirectToRoute('missions_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('missions_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
     }
 
     #[Route('/list/{page<\d+>}', name:'missions_index')]
-    public function getItemsByPage($page = 1, MissionsRepository $missionsRepository)
+    public function getItemsByPage(MissionsRepository $missionsRepository,int $page = 1)
     {
         $query = $missionsRepository    ->createQueryBuilder('i')
                                         ->orderBy('i.titre', 'ASC')

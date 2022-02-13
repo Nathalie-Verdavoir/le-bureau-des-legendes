@@ -35,7 +35,9 @@ class TypeDeMissionsController extends AbstractController
             $entityManager->persist($typeDeMission);
             $entityManager->flush();
 
-            return $this->redirectToRoute('type_de_missions_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('type_de_missions_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('type_de_missions/new.html.twig', [
@@ -61,7 +63,9 @@ class TypeDeMissionsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('type_de_missions_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('type_de_missions_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('type_de_missions/edit.html.twig', [
@@ -78,11 +82,13 @@ class TypeDeMissionsController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('type_de_missions_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('type_de_missions_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
     }
 
     #[Route('/list/{page<\d+>}', name:'type_de_missions_list')]
-    public function getItemsByPage($page = 1,TypeDeMissionsRepository $typeDeMissionsRepository)
+    public function getItemsByPage(TypeDeMissionsRepository $typeDeMissionsRepository,int $page = 1)
     {
         $query = $typeDeMissionsRepository  ->createQueryBuilder('i')
                                             ->orderBy('i.nom', 'ASC')

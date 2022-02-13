@@ -35,7 +35,9 @@ class PaysController extends AbstractController
             $entityManager->persist($pay);
             $entityManager->flush();
 
-            return $this->redirectToRoute('pays_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('pays_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('pays/new.html.twig', [
@@ -61,7 +63,9 @@ class PaysController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('pays_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('pays_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('pays/edit.html.twig', [
@@ -78,11 +82,13 @@ class PaysController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('pays_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('pays_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
     }
 
     #[Route('/list/{page<\d+>}', name:'pays_list')]
-    public function getItemsByPage($page = 1, PaysRepository $paysRepository)
+    public function getItemsByPage(PaysRepository $paysRepository,int $page = 1)
     {
         $query = $paysRepository    ->createQueryBuilder('i')
                                     ->orderBy('i.nom', 'ASC')

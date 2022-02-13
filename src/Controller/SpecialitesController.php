@@ -35,7 +35,9 @@ class SpecialitesController extends AbstractController
             $entityManager->persist($specialite);
             $entityManager->flush();
 
-            return $this->redirectToRoute('specialites_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('specialites_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('specialites/new.html.twig', [
@@ -61,7 +63,9 @@ class SpecialitesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('specialites_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('specialites_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('specialites/edit.html.twig', [
@@ -78,11 +82,13 @@ class SpecialitesController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('specialites_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('specialites_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
     }
 
     #[Route('/list/{page<\d+>}', name:'specialites_list')]
-    public function getItemsByPage($page = 1, SpecialitesRepository $specialitesRepository)
+    public function getItemsByPage(SpecialitesRepository $specialitesRepository,int $page = 1)
     {
         $query = $specialitesRepository ->createQueryBuilder('i')
                                         ->orderBy('i.nom', 'ASC')

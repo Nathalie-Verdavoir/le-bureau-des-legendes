@@ -35,7 +35,9 @@ class AgentsController extends AbstractController
             $entityManager->persist($agent);
             $entityManager->flush();
 
-            return $this->redirectToRoute('agents_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('agents_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('agents/new.html.twig', [
@@ -61,7 +63,9 @@ class AgentsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('agents_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('agents_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('agents/edit.html.twig', [
@@ -78,11 +82,13 @@ class AgentsController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('agents_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('agents_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
     }
 
     #[Route('/list/{page<\d+>}', name:'agents_index')]
-    public function getItemsByPage($page = 1, AgentsRepository $agentsRepository)
+    public function getItemsByPage( AgentsRepository $agentsRepository,int $page = 1)
     {
         $query = $agentsRepository  ->createQueryBuilder('i')
                                     ->orderBy('i.nom', 'ASC')

@@ -35,7 +35,9 @@ class ContactsController extends AbstractController
             $entityManager->persist($contact);
             $entityManager->flush();
 
-            return $this->redirectToRoute('contacts_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('contacts_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('contacts/new.html.twig', [
@@ -61,7 +63,9 @@ class ContactsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('contacts_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('contacts_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('contacts/edit.html.twig', [
@@ -78,11 +82,13 @@ class ContactsController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('contacts_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('contacts_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
     }
 
     #[Route('/list/{page<\d+>}', name:'contacts_index')]
-    public function getItemsByPage($page = 1, ContactsRepository $contactsRepository)
+    public function getItemsByPage(ContactsRepository $contactsRepository,int $page = 1)
     {
         $query = $contactsRepository    ->createQueryBuilder('i')
                                         ->orderBy('i.nom', 'ASC')

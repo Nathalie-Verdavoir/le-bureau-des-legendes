@@ -35,7 +35,9 @@ class NomDeCodeController extends AbstractController
             $entityManager->persist($nomDeCode);
             $entityManager->flush();
 
-            return $this->redirectToRoute('nom_de_code_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('nom_de_code_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('nom_de_code/new.html.twig', [
@@ -61,7 +63,9 @@ class NomDeCodeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('nom_de_code_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('nom_de_code_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('nom_de_code/edit.html.twig', [
@@ -78,11 +82,13 @@ class NomDeCodeController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('nom_de_code_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('nom_de_code_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
     }
 
     #[Route('/list/{page<\d+>}', name:'nom_de_code_index')]
-    public function getItemsByPage($page = 1, NomDeCodeRepository $nomDeCodeRepository)
+    public function getItemsByPage(NomDeCodeRepository $nomDeCodeRepository,int $page = 1)
     {
         $query = $nomDeCodeRepository   ->createQueryBuilder('i')
                                         ->orderBy('i.code', 'ASC')

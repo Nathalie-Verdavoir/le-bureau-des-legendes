@@ -35,7 +35,9 @@ class CiblesController extends AbstractController
             $entityManager->persist($cible);
             $entityManager->flush();
 
-            return $this->redirectToRoute('cibles_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('cibles_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('cibles/new.html.twig', [
@@ -61,7 +63,9 @@ class CiblesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('cibles_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('cibles_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('cibles/edit.html.twig', [
@@ -78,11 +82,13 @@ class CiblesController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('cibles_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('cibles_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
     }
 
     #[Route('/list/{page<\d+>}', name:'cibles_index')]
-    public function getItemsByPage($page = 1, CiblesRepository $ciblesRepository)
+    public function getItemsByPage( CiblesRepository $ciblesRepository,int $page = 1)
     {
         $query = $ciblesRepository  ->createQueryBuilder('i')
                                     ->orderBy('i.nom', 'ASC')

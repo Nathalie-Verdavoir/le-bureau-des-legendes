@@ -35,7 +35,9 @@ class StatusController extends AbstractController
             $entityManager->persist($status);
             $entityManager->flush();
 
-            return $this->redirectToRoute('status_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('status_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('status/new.html.twig', [
@@ -61,7 +63,9 @@ class StatusController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('status_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('status_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('status/edit.html.twig', [
@@ -78,11 +82,13 @@ class StatusController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('status_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('status_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
     }
 
     #[Route('/list/{page<\d+>}', name:'status_list')]
-    public function getItemsByPage($page = 1, StatusRepository $statusRepository)
+    public function getItemsByPage(StatusRepository $statusRepository,int $page = 1)
     {
         $query = $statusRepository  ->createQueryBuilder('i')
                                     ->orderBy('i.etat', 'ASC')

@@ -35,7 +35,9 @@ class PlanquesController extends AbstractController
             $entityManager->persist($planque);
             $entityManager->flush();
 
-            return $this->redirectToRoute('planques_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('planques_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('planques/new.html.twig', [
@@ -61,7 +63,9 @@ class PlanquesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('planques_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('planques_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('planques/edit.html.twig', [
@@ -78,11 +82,13 @@ class PlanquesController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('planques_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('planques_index',array(
+            'page' => $page = 1,
+            ), Response::HTTP_SEE_OTHER);
     }
 
     #[Route('/list/{page<\d+>}', name:'planques_list')]
-    public function getItemsByPage($page = 1, PlanquesRepository $planquesRepository)
+    public function getItemsByPage(PlanquesRepository $planquesRepository,int $page = 1)
     {
         $query = $planquesRepository    ->createQueryBuilder('i')
                                         ->orderBy('i.id', 'ASC')
