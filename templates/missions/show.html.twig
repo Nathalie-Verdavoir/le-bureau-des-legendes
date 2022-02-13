@@ -27,6 +27,30 @@
                 <th>Date_fin</th>
                 <td>{{ mission.dateFin ? mission.dateFin|date('Y-m-d') : '' }}</td>
             </tr>
+            <tr>
+                <th>Planques</th>
+                <td> 
+                    {% for planques in mission.planques %}
+                        {{ planques.code }}
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>Spécialité nécessaire</th>
+                <td>{{ mission.specialite }}</td>
+            </tr>
+            <tr>
+                <th>Pays</th>
+                <td>{{ mission.pays }}</td>
+            </tr>
+            <tr>
+                <th>Agents</th>
+                <td> 
+                    {% for agents in mission.agents %}
+                        {{ agents.nom }}
+                    {% endfor %}
+                </td>
+            </tr>
         </tbody>
     </table>
 

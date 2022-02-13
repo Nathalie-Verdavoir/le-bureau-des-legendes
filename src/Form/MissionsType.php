@@ -31,7 +31,7 @@ class MissionsType extends AbstractType
             #->add('planques')
             ->add('specialite') 
             
-            ->add('pays_ti', PaysEtPlanquesPourMissionType::class,[
+            ->add('pays_planques', PaysEtPlanquesPourMissionType::class,[
                'mapped' =>  false,
                'allow_extra_fields' => 'true'
             ])

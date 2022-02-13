@@ -5,9 +5,12 @@ namespace App\Form;
 use App\Entity\Missions;
 use App\Entity\Planques;
 use App\Entity\Pays;
+use App\Repository\PaysRepository;
 use App\Repository\PlanquesRepository;
 use Doctrine\Common\Annotations\Annotation\Required;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -17,30 +20,51 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
 
 class PaysEtPlanquesPourMissionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('pays'
-        #,CollectionType::class,[
-            #'class' => PaysType::class,
-            #'placeholder' => 'choisir',
-            #'choice_label' => 'nom',
-            #'mapped' => true,
-            #'choice_value' => 'id'
-        #]
-    );
+            ->add('pays'
+            ,EntityType::class,[
+                'class' => Pays::class,
+                'placeholder' => 'choisir',
+                #'choice_label' => 'nom',
+                'mapped' => true,
+                #'choice_value' => 'id'
+            ]
+        );
+
+        
+        $builder
+            ->addEventListener(FormEvents::POST_SET_DATA,
+            function (FormEvent $event) {
+                $form = $event->getForm()->getParent();
+                $data=  $form->getData();
+               // dump($data->getPays());
+                /* @var $planques Planques */
+                $planques = $data->getPlanques();
+                if(strlen($planques[0])) {
+
+                    $id=$planques[0]->getPays()->getId();
+                    $event->getForm()->get('pays')->setData( $this->getNomDuPays($id));
+                }
+                else if( $data->getPays()){
+                    $event->getForm()->get('pays')->setData( $this->getNomDuPays($data->getPays()->getId()));
+                }
+            }
+        );
         $builder
         ->get('pays')->addEventListener(
-            FormEvents::PRE_SUBMIT,
+            FormEvents::POST_SET_DATA,
             function (FormEvent $event) {
             $form = $event->getForm()->getParent();
             $data=  $form->getData();
             $this->getPlanqueFromPays($form,$data);
             
-             dump($data);
+            // dump($data);
             if($data){
                 #$pl = $data-> getCode();
                 #$mission->setPays($data); 
@@ -48,7 +72,6 @@ class PaysEtPlanquesPourMissionType extends AbstractType
             }
             }
         );
-       
 
        
     }
@@ -70,13 +93,27 @@ class PaysEtPlanquesPourMissionType extends AbstractType
                                 ->setParameter('data', $pays)
                                 ;
                 },
-            'required' => true,
             'choice_label' => 'code',
             'choice_value' => 'id',
            ));
            
     }
-    
+
+    public $paysRepository;
+    public function __construct(PaysRepository $paysRepository)
+    {
+        $this->paysRepository = $paysRepository;
+    }
+
+    /**
+     * Retrouve le nom du pays
+     * @param int $id
+     */
+    public function getNomDuPays( int $id){
+        $id = $id ? $id : 75;
+        return $VarName =  $this->paysRepository->find($id);
+           
+    }
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

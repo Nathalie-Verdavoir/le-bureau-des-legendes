@@ -30,7 +30,7 @@ class Planques
     #[ORM\JoinColumn(nullable: false)]
     private $type;
 
-    #[ORM\ManyToMany(targetEntity: Missions::class, mappedBy: 'planques')]
+    #[ORM\ManyToMany(targetEntity: Missions::class, mappedBy: 'planques', cascade: ['persist'], orphanRemoval: true)]
     private $missions;
 
     public function __construct()

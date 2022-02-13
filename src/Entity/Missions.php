@@ -49,8 +49,7 @@ class Missions
     #[ORM\JoinColumn(nullable: false)]
     private $statut;
 
-    #[ORM\ManyToMany(targetEntity: Planques::class, inversedBy: 'missions')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToMany(targetEntity: Planques::class, inversedBy: 'missions', cascade: ["persist","remove"], orphanRemoval: true)]
     #[Assert\NotBlank()]
     private $planques;
 

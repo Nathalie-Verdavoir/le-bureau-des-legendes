@@ -2,3 +2,7 @@
     {{ form_widget(form) }}
     <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}
+ {% block javascripts %}
+            <script src="{{ asset('js/mission.js') }}" ></script>
+          
+        {% endblock %}
