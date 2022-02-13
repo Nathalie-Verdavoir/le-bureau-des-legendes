@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Missions;
+use App\Entity\Pays;
 use App\Form\MissionsType;
 use App\Repository\MissionsRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -24,21 +25,54 @@ class MissionsController extends AbstractController
     }
 
     #[Security("is_granted('ROLE_ADMIN')", statusCode: 404)]
+
+    #[Route('/list/{page}', name:'missions_index')]
+    public function getItemsByPage(MissionsRepository $missionsRepository,int $page = 1)
+    {
+        $query = $missionsRepository    ->createQueryBuilder('i')
+                                        ->orderBy('i.titre', 'ASC')
+                                        ->getQuery();
+
+        //set page size
+        $pageSize = '10';
+
+        // load doctrine Paginator
+        $paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
+
+        // you can get total items
+        $totalItems = count($paginator);
+
+        // get total pages
+        $pageCount = ceil($totalItems / $pageSize);
+
+        // now get one page's items:
+        $paginator
+            ->getQuery()
+            ->setFirstResult($pageSize * ($page-1)) // set the offset
+            ->setMaxResults($pageSize); // set the limit
+
+        return $this->render('missions/index.html.twig', [
+                'missions' => $paginator,
+                'pageCount' => $pageCount
+            ]);
+    }
+
     #[Route('/new', name: 'missions_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $mission = new Missions();
         $form = $this->createForm(MissionsType::class, $mission);
+        
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() && $mission->getPlanques()[0]) {
+            $mission->setPays($mission->getPlanques()[0]->getPays());
             $entityManager->persist($mission);
             $entityManager->flush();
-/*
+
             return $this->redirectToRoute('missions_index',array(
-                'page' => $page = 1,
+                'page' => 1,
                 ),  Response::HTTP_SEE_OTHER);
-                */
+                
         }
 
         return $this->renderForm('missions/new.html.twig', [
@@ -89,34 +123,4 @@ class MissionsController extends AbstractController
             ), Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/list/{page<\d+>}', name:'missions_index')]
-    public function getItemsByPage(MissionsRepository $missionsRepository,int $page = 1)
-    {
-        $query = $missionsRepository    ->createQueryBuilder('i')
-                                        ->orderBy('i.titre', 'ASC')
-                                        ->getQuery();
-
-        //set page size
-        $pageSize = '10';
-
-        // load doctrine Paginator
-        $paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
-
-        // you can get total items
-        $totalItems = count($paginator);
-
-        // get total pages
-        $pageCount = ceil($totalItems / $pageSize);
-
-        // now get one page's items:
-        $paginator
-            ->getQuery()
-            ->setFirstResult($pageSize * ($page-1)) // set the offset
-            ->setMaxResults($pageSize); // set the limit
-
-        return $this->render('missions/index.html.twig', [
-                'missions' => $paginator,
-                'pageCount' => $pageCount
-            ]);
-    }
 }

@@ -83,7 +83,7 @@ class AgentsController extends AbstractController
         }
 
         return $this->redirectToRoute('agents_index',array(
-            'page' => $page = 1,
+            'page' => 1,
             ), Response::HTTP_SEE_OTHER);
     }
 

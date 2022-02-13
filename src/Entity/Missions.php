@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 #[ORM\Entity(repositoryClass: MissionsRepository::class)]
 class Missions
@@ -27,9 +29,9 @@ class Missions
     private $nom_de_code;
 
     #[ORM\ManyToOne(targetEntity: Pays::class, inversedBy: 'missions')]
-    #[ORM\JoinColumn(nullable: true)]
+    #[ORM\JoinColumn(nullable: false)]
     private $pays;
-
+    
     #[ORM\ManyToMany(targetEntity: Agents::class, inversedBy: 'missions')]
     private $agents;
 
