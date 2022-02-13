@@ -7,7 +7,7 @@
 
     {{ include('cibles/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a type="button" class="btn" href="{{ path('cibles_index') }}">Retour</a>
+    <a type="button" class="btn" href="{{ path('cibles_index', {'page': 1}) }}">Retour</a>
 
     {{ include('cibles/_delete_form.html.twig') }}
 {% endblock %}

@@ -7,5 +7,5 @@
 
     {{ include('status/_form.html.twig') }}
 
-    <a type="button" class="btn" href="{{ path('status_index') }}">Retour</a>
+    <a type="button" class="btn" href="{{ path('status_index', {'page': 1}) }}">Retour</a>
 {% endblock %}

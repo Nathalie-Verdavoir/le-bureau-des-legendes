@@ -7,5 +7,5 @@
 
     {{ include('nom_de_code/_form.html.twig') }}
 
-    <a type="button" class="btn" href="{{ path('nom_de_code_index') }}">Retour</a>
+    <a type="button" class="btn" href="{{ path('nom_de_code_index', {'page': 1}) }}">Retour</a>
 {% endblock %}
