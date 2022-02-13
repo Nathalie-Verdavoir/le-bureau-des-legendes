@@ -22,17 +22,23 @@ class MissionsType extends AbstractType
                 'data' =>  new \DateTime("now"),
             ])
             ->add('nom_de_code', NomDeCodeAjouter::class)
-            ->add('pays', PaysEtPlanquesPourMissionType::class)
            
             ->add('agents')
             ->add('contacts')
             ->add('Cibles')
             ->add('type')
             ->add('statut')
-            ->add('planques')
-            ->add('specialite')
+            #->add('planques')
+            ->add('specialite') 
+            
+            ->add('pays_ti', PaysEtPlanquesPourMissionType::class,[
+               'mapped' =>  false,
+               'allow_extra_fields' => 'true'
+            ])
+           #->add('pays')
         ;
     }
+
 
     public function configureOptions(OptionsResolver $resolver): void
     {
