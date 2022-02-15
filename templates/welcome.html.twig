@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block title %}Welcome{% endblock %}
 
-{% block body %}
+{% block header %}
     <h1>Bienvenue {{ app.user ? app.user :  'l\'inconnu'}}, il est {{ 'now'|date('H:i:s') }} à Paris!</h1>
     <div class="admin-buttons">
     <a type="button" class="btn" href="{{ app.user ? path('logout') : path('login')}}">{{ app.user ? 'Logout' : 'Login' }}</a>
@@ -26,7 +26,7 @@
     {% endif %}
         
     </div>
-    {% block content %}
+    {% block main %}
    <br>
     <div class="fond-gris centre announcement"> 
     <div> 

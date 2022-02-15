@@ -30,38 +30,20 @@ class PaysEtPlanquesPourMissionType extends AbstractType
             ->add('pays'
             ,EntityType::class,[
                 'class' => Pays::class,
-                'placeholder' => 'choisir',
+                #'placeholder' => 'choisir',
                 #'choice_label' => 'nom',
                 'mapped' => true,
                 #'choice_value' => 'id'
             ]
         );
 
-        
-        $builder
-            ->addEventListener(FormEvents::POST_SET_DATA,
-            function (FormEvent $event) {
-                $form = $event->getForm()->getParent();
-                $data=  $form->getData();
-               // dump($data->getPays());
-                /* @var $planques Planques */
-                $planques = $data->getPlanques();
-                if(strlen($planques[0])) {
-
-                    $id=$planques[0]->getPays()->getId();
-                    $event->getForm()->get('pays')->setData( $this->getNomDuPays($id));
-                }
-                else if( $data->getPays()){
-                    $event->getForm()->get('pays')->setData( $this->getNomDuPays($data->getPays()->getId()));
-                }
-            }
-        );
         $builder
         ->get('pays')->addEventListener(
-            FormEvents::POST_SET_DATA,
+            FormEvents::PRE_SUBMIT,
             function (FormEvent $event) {
             $form = $event->getForm()->getParent();
             $data=  $form->getData();
+            dump($data);
             $this->getPlanqueFromPays($form,$data);
             
             // dump($data);
@@ -74,6 +56,26 @@ class PaysEtPlanquesPourMissionType extends AbstractType
         );
 
        
+        
+        $builder
+            ->addEventListener(FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) {
+                $form = $event->getForm()->getParent();
+                $data=  $form->getData();
+               dump($form);
+                /* @var $planques Planques */
+                $planques = $data->getPlanques();
+                if(strlen($planques[0])) {
+
+                    $id=$planques[0]->getPays()->getId();
+                    $event->getForm()->get('pays')->setData( $this->getNomDuPays($id));
+                }
+                else if( $data->getPays()){
+                   $event->getForm()->get('pays')->setData( $this->getNomDuPays($data->getPays()->getId()));
+                   $this->getPlanqueFromPays($event->getForm(),$data->getPays()->getId());
+                }
+            }
+        );
     }
 
 
@@ -83,7 +85,7 @@ class PaysEtPlanquesPourMissionType extends AbstractType
      * @param int $pays
      */
     private function getPlanqueFromPays(FormInterface $form, ?int $pays){
-        $pays = $pays ? $pays : 75;
+        
         $form->getParent()->add('planques',EntityType::class, array(
             'class' => Planques::class,
             'multiple' => true,

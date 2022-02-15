@@ -1,8 +1,8 @@
-{% extends 'base.html.twig' %}
+{% extends 'welcome.html.twig' %}
 
 {% block title %}Edit Contacts{% endblock %}
 
-{% block body %}
+{% block main %}
     <h1>Edit Contacts</h1>
 
     {{ include('contacts/_form.html.twig', {'button_label': 'Update'}) }}

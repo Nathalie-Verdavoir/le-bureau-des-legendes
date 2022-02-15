@@ -1,8 +1,7 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'welcome.html.twig' %}
 {% block title %}Edit Missions{% endblock %}
 
-{% block body %}
+{% block main %}
     <h1>Edit Missions</h1>
 
     {{ include('missions/_form.html.twig', {'button_label': 'Update'}) }}

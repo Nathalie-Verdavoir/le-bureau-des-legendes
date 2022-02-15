@@ -13,7 +13,10 @@ class NomDeCodeAjouter extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('code', TypeTextType::class, array('label'=>' '))
+            ->add('code', TypeTextType::class,[
+                'attr' => ['class' => 'inlineForm'],
+                'label' => ' '
+            ])
         ;
     }
 

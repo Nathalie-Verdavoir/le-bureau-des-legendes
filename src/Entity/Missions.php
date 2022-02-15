@@ -28,7 +28,7 @@ class Missions
     #[ORM\JoinColumn(nullable: false)]
     private $nom_de_code;
 
-    #[ORM\ManyToOne(targetEntity: Pays::class, inversedBy: 'missions')]
+    #[ORM\ManyToOne(targetEntity: Pays::class, inversedBy: 'missions',fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: false)]
     private $pays;
     
@@ -49,7 +49,7 @@ class Missions
     #[ORM\JoinColumn(nullable: false)]
     private $statut;
 
-    #[ORM\ManyToMany(targetEntity: Planques::class, inversedBy: 'missions', cascade: ["persist","remove"], orphanRemoval: true)]
+    #[ORM\ManyToMany(targetEntity: Planques::class, inversedBy: 'missions', cascade: ["persist","remove"],fetch: 'EXTRA_LAZY')]
     #[Assert\NotBlank()]
     private $planques;
 
@@ -261,7 +261,7 @@ class Missions
         return $this->date_debut;
     }
 
-    public function setDateDebut(\DateTimeInterface $date_debut): self
+    public function setDateDebut(?\DateTimeInterface $date_debut): self
     {
         $this->date_debut = $date_debut;
 
@@ -285,4 +285,6 @@ class Missions
     {
         return $this->titre;
     }
+
+    
 }

@@ -15,7 +15,7 @@ class PlanquesType extends AbstractType
     {
         $builder
             ->add('adresse')
-            ->add('code', NomDeCodeAgent::class)
+            ->add('code', NomDeCodeAjouter::class)
             ->add('pays', EntityType::class, array(
                 'class' => Pays::class,
                 'choice_label' => 'nom',

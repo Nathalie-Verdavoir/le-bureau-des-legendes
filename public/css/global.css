@@ -96,6 +96,12 @@ body > table > tbody > tr > td > .btn {
 .yellow {
     color: yellow;
 }
+
+/*forms*/
+.inlineForm {
+    display: inline;
+}
+
 /* animations */
 .announcement {
      overflow: hidden;
@@ -106,7 +112,9 @@ body > table > tbody > tr > td > .btn {
     padding-left: 100vw;
     white-space: nowrap;
     animation: announce 45s infinite linear;
-  }
+}
+
+
 
   @keyframes announce {
     0% {

@@ -1,10 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'welcome.html.twig' %}
 
 {% block title %}TypeDePlanques index{% endblock %}
 
-{% block body %}
+{% block main %}
     
-<h1>TypeDePlanques index</h1><a type="button" class="btn" href="/">Accueil</a>
+<h1>TypeDePlanques index</h1>
     <table class="table">
         <thead>
             <tr>
@@ -34,5 +34,5 @@
          {% endfor %}
          {% endif %}
          <br>
-    <a type="button" class="btn" href="{{ path('type_de_planques_new') }}">Create new</a>
+    <a type="button" class="btn" href="{{ path('type_de_planques_new') }}">Ajouter </a>
 {% endblock %}

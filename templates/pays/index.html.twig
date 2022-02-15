@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'welcome.html.twig' %}
 
 {% block title %}Pays index{% endblock %}
 
-{% block body %}
-    <h1>Pays index</h1><a type="button" class="btn" href="/">Accueil</a>
+{% block main %}
+    <h1>Pays index</h1>
 
     <table class="table">
         <thead>
@@ -47,5 +47,5 @@
          {% endfor %}
          {% endif %}
          <br>
-    <a type="button" class="btn" href="{{ path('pays_new') }}">Create new</a>
+    <a type="button" class="btn" href="{{ path('pays_new') }}">Ajouter </a>
 {% endblock %}

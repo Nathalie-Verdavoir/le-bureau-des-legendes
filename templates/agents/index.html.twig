@@ -2,7 +2,7 @@
 
 {% block title %}Agents{% endblock %}
 
-{% block content %}
+{% block main %}
     <h1>Agents</h1><a type="button" class="btn btn-primary" href="/">Accueil</a>
 
     <table class="table">
@@ -44,5 +44,5 @@
          {% endfor %}
          {% endif %}
          <br>
-    <a type="button" class="btn btn-primary" href="{{ path('agents_new') }}">Create new</a>
+    <a type="button" class="btn btn-primary" href="{{ path('agents_new') }}">Ajouter </a>
 {% endblock %}

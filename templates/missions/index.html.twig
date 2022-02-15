@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'welcome.html.twig' %}
 
 {% block title %}Missions index{% endblock %}
 
-{% block body %}
-    <h1>Missions index</h1><a type="button" class="btn" href="/">Accueil</a>
+{% block main %}
+    <h1>Missions index</h1>
 
     <table class="table">
         <thead>
@@ -46,5 +46,5 @@
          {% endfor %}
          {% endif %}
          <br>
-    <a type="button" class="btn" href="{{ path('missions_new') }}">Create new</a>
+    <a type="button" class="btn" href="{{ path('missions_new') }}">Ajouter </a>
 {% endblock %}
