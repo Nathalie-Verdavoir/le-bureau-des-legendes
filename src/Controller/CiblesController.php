@@ -16,12 +16,43 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 #[Route('/cibles')]
 class CiblesController extends AbstractController
 {
-    #[Route('/', name: 'cibles_index', methods: ['GET'])]
+    #[Route('/', name: 'cibles_index1', methods: ['GET'])]
     public function index(CiblesRepository $ciblesRepository): Response
     {
         return $this->render('cibles/index.html.twig', [
             'cibles' => $ciblesRepository->findAll(),
         ]);
+    }
+
+    #[Route('/list/{page<\d+>}', name:'cibles_index')]
+    public function getItemsByPage( CiblesRepository $ciblesRepository,int $page = 1)
+    {
+        $query = $ciblesRepository  ->createQueryBuilder('i')
+                                    ->orderBy('i.nom', 'ASC')
+                                    ->getQuery();
+
+        //set page size
+        $pageSize = '10';
+
+        // load doctrine Paginator
+        $paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
+
+        // you can get total items
+        $totalItems = count($paginator);
+
+        // get total pages
+        $pageCount = ceil($totalItems / $pageSize);
+
+        // now get one page's items:
+        $paginator
+            ->getQuery()
+            ->setFirstResult($pageSize * ($page-1)) // set the offset
+            ->setMaxResults($pageSize); // set the limit
+
+        return $this->render('cibles/index.html.twig', [
+                'cibles' => $paginator,
+                'pageCount' => $pageCount
+            ]);
     }
 
     #[Route('/new', name: 'cibles_new', methods: ['GET', 'POST'])]
@@ -87,36 +118,7 @@ class CiblesController extends AbstractController
             ), Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/list/{page<\d+>}', name:'cibles_index')]
-    public function getItemsByPage( CiblesRepository $ciblesRepository,int $page = 1)
-    {
-        $query = $ciblesRepository  ->createQueryBuilder('i')
-                                    ->orderBy('i.nom', 'ASC')
-                                    ->getQuery();
-
-        //set page size
-        $pageSize = '10';
-
-        // load doctrine Paginator
-        $paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
-
-        // you can get total items
-        $totalItems = count($paginator);
-
-        // get total pages
-        $pageCount = ceil($totalItems / $pageSize);
-
-        // now get one page's items:
-        $paginator
-            ->getQuery()
-            ->setFirstResult($pageSize * ($page-1)) // set the offset
-            ->setMaxResults($pageSize); // set the limit
-
-        return $this->render('cibles/index.html.twig', [
-                'cibles' => $paginator,
-                'pageCount' => $pageCount
-            ]);
-    }
+    
 
     
 }

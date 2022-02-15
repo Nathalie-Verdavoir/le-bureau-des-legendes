@@ -24,6 +24,37 @@ class SpecialitesController extends AbstractController
         ]);
     }
 
+    #[Route('/list/{page<\d+>}', name:'specialites_list')]
+    public function getItemsByPage(SpecialitesRepository $specialitesRepository,int $page = 1)
+    {
+        $query = $specialitesRepository ->createQueryBuilder('i')
+                                        ->orderBy('i.nom', 'ASC')
+                                        ->getQuery();
+
+        //set page size
+        $pageSize = '10';
+
+        // load doctrine Paginator
+        $paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
+
+        // you can get total items
+        $totalItems = count($paginator);
+
+        // get total pages
+        $pageCount = ceil($totalItems / $pageSize);
+
+        // now get one page's items:
+        $paginator
+            ->getQuery()
+            ->setFirstResult($pageSize * ($page-1)) // set the offset
+            ->setMaxResults($pageSize); // set the limit
+
+        return $this->render('specialites/index.html.twig', [
+                'specialites' => $paginator,
+                'pageCount' => $pageCount
+            ]);
+    }
+
     #[Route('/new', name: 'specialites_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -85,38 +116,5 @@ class SpecialitesController extends AbstractController
         return $this->redirectToRoute('specialites_index',array(
             'page' => $page = 1,
             ), Response::HTTP_SEE_OTHER);
-    }
-
-    #[Route('/list/{page<\d+>}', name:'specialites_list')]
-    public function getItemsByPage(SpecialitesRepository $specialitesRepository,int $page = 1)
-    {
-        $query = $specialitesRepository ->createQueryBuilder('i')
-                                        ->orderBy('i.nom', 'ASC')
-                                        ->getQuery();
-
-        //set page size
-        $pageSize = '10';
-
-        // load doctrine Paginator
-        $paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
-
-        // you can get total items
-        $totalItems = count($paginator);
-
-        // get total pages
-        $pageCount = ceil($totalItems / $pageSize);
-
-        // now get one page's items:
-        $paginator
-            ->getQuery()
-            ->setFirstResult($pageSize * ($page-1)) // set the offset
-            ->setMaxResults($pageSize); // set the limit
-
-        return $this->render('specialites/index.html.twig', [
-                'specialites' => $paginator,
-                'pageCount' => $pageCount
-            ]);
-        // return stuff..
-    // return [$userList, $totalItems, $pageCount];
     }
 }

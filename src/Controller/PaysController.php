@@ -24,6 +24,37 @@ class PaysController extends AbstractController
         ]);
     }
 
+    #[Route('/list/{page<\d+>}', name:'pays_list')]
+    public function getItemsByPage(PaysRepository $paysRepository,int $page = 1)
+    {
+        $query = $paysRepository    ->createQueryBuilder('i')
+                                    ->orderBy('i.nom', 'ASC')
+                                    ->getQuery();
+
+        //set page size
+        $pageSize = '10';
+
+        // load doctrine Paginator
+        $paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
+
+        // you can get total items
+        $totalItems = count($paginator);
+
+        // get total pages
+        $pageCount = ceil($totalItems / $pageSize);
+
+        // now get one page's items:
+        $paginator
+            ->getQuery()
+            ->setFirstResult($pageSize * ($page-1)) // set the offset
+            ->setMaxResults($pageSize); // set the limit
+
+        return $this->render('pays/index.html.twig', [
+                'pays' => $paginator,
+                'pageCount' => $pageCount
+            ]);
+    }
+
     #[Route('/new', name: 'pays_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -85,38 +116,5 @@ class PaysController extends AbstractController
         return $this->redirectToRoute('pays_index',array(
             'page' => $page = 1,
             ), Response::HTTP_SEE_OTHER);
-    }
-
-    #[Route('/list/{page<\d+>}', name:'pays_list')]
-    public function getItemsByPage(PaysRepository $paysRepository,int $page = 1)
-    {
-        $query = $paysRepository    ->createQueryBuilder('i')
-                                    ->orderBy('i.nom', 'ASC')
-                                    ->getQuery();
-
-        //set page size
-        $pageSize = '10';
-
-        // load doctrine Paginator
-        $paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
-
-        // you can get total items
-        $totalItems = count($paginator);
-
-        // get total pages
-        $pageCount = ceil($totalItems / $pageSize);
-
-        // now get one page's items:
-        $paginator
-            ->getQuery()
-            ->setFirstResult($pageSize * ($page-1)) // set the offset
-            ->setMaxResults($pageSize); // set the limit
-
-        return $this->render('pays/index.html.twig', [
-                'pays' => $paginator,
-                'pageCount' => $pageCount
-            ]);
-        // return stuff..
-    // return [$userList, $totalItems, $pageCount];
     }
 }

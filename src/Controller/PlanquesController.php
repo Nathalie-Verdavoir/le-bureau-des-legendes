@@ -24,6 +24,39 @@ class PlanquesController extends AbstractController
         ]);
     }
 
+    #[Route('/list/{page<\d+>}', name:'planques_list')]
+    public function getItemsByPage(PlanquesRepository $planquesRepository,int $page = 1)
+    {
+        $query = $planquesRepository    ->createQueryBuilder('i')
+                                        ->orderBy('i.id', 'ASC')
+                                        ->getQuery();
+
+        //set page size
+        $pageSize = '10';
+
+        // load doctrine Paginator
+        $paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
+
+        // you can get total items
+        $totalItems = count($paginator);
+
+        // get total pages
+        $pageCount = ceil($totalItems / $pageSize);
+
+        // now get one page's items:
+        $paginator
+            ->getQuery()
+            ->setFirstResult($pageSize * ($page-1)) // set the offset
+            ->setMaxResults($pageSize); // set the limit
+
+        return $this->render('planques/index.html.twig', [
+                'planques' => $paginator,
+                'pageCount' => $pageCount
+            ]);
+        // return stuff..
+    // return [$userList, $totalItems, $pageCount];
+    }
+
     #[Route('/new', name: 'planques_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -85,38 +118,5 @@ class PlanquesController extends AbstractController
         return $this->redirectToRoute('planques_index',array(
             'page' => $page = 1,
             ), Response::HTTP_SEE_OTHER);
-    }
-
-    #[Route('/list/{page<\d+>}', name:'planques_list')]
-    public function getItemsByPage(PlanquesRepository $planquesRepository,int $page = 1)
-    {
-        $query = $planquesRepository    ->createQueryBuilder('i')
-                                        ->orderBy('i.id', 'ASC')
-                                        ->getQuery();
-
-        //set page size
-        $pageSize = '10';
-
-        // load doctrine Paginator
-        $paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
-
-        // you can get total items
-        $totalItems = count($paginator);
-
-        // get total pages
-        $pageCount = ceil($totalItems / $pageSize);
-
-        // now get one page's items:
-        $paginator
-            ->getQuery()
-            ->setFirstResult($pageSize * ($page-1)) // set the offset
-            ->setMaxResults($pageSize); // set the limit
-
-        return $this->render('planques/index.html.twig', [
-                'planques' => $paginator,
-                'pageCount' => $pageCount
-            ]);
-        // return stuff..
-    // return [$userList, $totalItems, $pageCount];
     }
 }

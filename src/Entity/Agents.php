@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Specialites;
 use App\Repository\AgentsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -162,8 +163,42 @@ class Agents
         return $this;
     }
     
+    public function getToutesLesSpecialites()
+    {
+        $spe = $this->getSpecialites();
+        $text ='';
+        if($spe && count($spe) > 0)
+        {/**@var $s Specialites */
+            foreach($spe as $s)
+            {
+                if($s)
+                {
+                    $text =  $text . ' "'.$s.'" ';
+                }            
+            }
+        }else
+        {
+            return '"Pas de spécialité"';
+        } 
+        return $text;
+    }
+
+    public function getPaysAgent()
+    {
+        $pays = $this->getNationalite();
+        
+        if($pays && strlen($pays) > 0)
+        {
+         return $pays;
+        }else
+        {
+            return 'Pays Inconnu';
+        } 
+       
+    }
+    
     public function __toString()
     {
-        return $this->nom;
+        return $this->nom_de_code. " (". $this->getPaysAgent(). ", ".  $this->getToutesLesSpecialites() . ")";
     }
 }

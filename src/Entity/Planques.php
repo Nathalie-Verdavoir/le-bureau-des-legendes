@@ -120,6 +120,6 @@ class Planques
     
     public function __toString()
     {
-        return $this->id;
+        return $this->code. " (". $this->pays . ")";
     }
 }

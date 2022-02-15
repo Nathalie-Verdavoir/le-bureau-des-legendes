@@ -9,7 +9,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\TextType as TypeTextType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,8 +18,8 @@ class AgentsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', TypeTextType::class)
-            ->add('prenom', TypeTextType::class)
+            ->add('nom', TextType::class)
+            ->add('prenom', TextType::class)
             ->add('date_de_naissance', BirthdayType::class)
             ->add('specialites', EntityType::class, array(
                 'class' => Specialites::class,
@@ -37,7 +37,6 @@ class AgentsType extends AbstractType
                 'choice_label' => 'nom',              
                 'label' => 'Pays d\'origine'
             ))
-            ->add('missions')
         ;
     }
 

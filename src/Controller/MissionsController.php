@@ -23,9 +23,7 @@ class MissionsController extends AbstractController
             'missions' => $missionsRepository->findAll(),
         ]);
     }
-
-    #[Security("is_granted('ROLE_ADMIN')", statusCode: 404)]
-
+    
     #[Route('/list/{page}', name:'missions_index')]
     public function getItemsByPage(MissionsRepository $missionsRepository,int $page = 1)
     {
@@ -56,7 +54,7 @@ class MissionsController extends AbstractController
                 'pageCount' => $pageCount
             ]);
     }
-
+    #[Security("is_granted('ROLE_ADMIN')", statusCode: 404)]
     #[Route('/new', name: 'missions_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {

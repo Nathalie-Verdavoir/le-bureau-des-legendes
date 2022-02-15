@@ -17,7 +17,6 @@ class ContactsType extends AbstractType
             ->add('date_de_naissance')
             ->add('nom_de_code')
             ->add('nationalite')
-            ->add('missions')
         ;
     }
 

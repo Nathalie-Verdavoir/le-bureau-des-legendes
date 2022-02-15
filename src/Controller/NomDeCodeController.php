@@ -24,6 +24,37 @@ class NomDeCodeController extends AbstractController
         ]);
     }
 
+    #[Route('/list/{page<\d+>}', name:'nom_de_code_index')]
+    public function getItemsByPage(NomDeCodeRepository $nomDeCodeRepository,int $page = 1)
+    {
+        $query = $nomDeCodeRepository   ->createQueryBuilder('i')
+                                        ->orderBy('i.code', 'ASC')
+                                        ->getQuery();
+
+        //set page size
+        $pageSize = '10';
+
+        // load doctrine Paginator
+        $paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
+
+        // you can get total items
+        $totalItems = count($paginator);
+
+        // get total pages
+        $pageCount = ceil($totalItems / $pageSize);
+
+        // now get one page's items:
+        $paginator
+            ->getQuery()
+            ->setFirstResult($pageSize * ($page-1)) // set the offset
+            ->setMaxResults($pageSize); // set the limit
+
+        return $this->render('nom_de_code/index.html.twig', [
+                'nom_de_codes' => $paginator,
+                'pageCount' => $pageCount
+            ]);
+    }
+    
     #[Route('/new', name: 'nom_de_code_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -87,34 +118,4 @@ class NomDeCodeController extends AbstractController
             ), Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/list/{page<\d+>}', name:'nom_de_code_index')]
-    public function getItemsByPage(NomDeCodeRepository $nomDeCodeRepository,int $page = 1)
-    {
-        $query = $nomDeCodeRepository   ->createQueryBuilder('i')
-                                        ->orderBy('i.code', 'ASC')
-                                        ->getQuery();
-
-        //set page size
-        $pageSize = '10';
-
-        // load doctrine Paginator
-        $paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
-
-        // you can get total items
-        $totalItems = count($paginator);
-
-        // get total pages
-        $pageCount = ceil($totalItems / $pageSize);
-
-        // now get one page's items:
-        $paginator
-            ->getQuery()
-            ->setFirstResult($pageSize * ($page-1)) // set the offset
-            ->setMaxResults($pageSize); // set the limit
-
-        return $this->render('nom_de_code/index.html.twig', [
-                'nom_de_codes' => $paginator,
-                'pageCount' => $pageCount
-            ]);
-    }
 }
