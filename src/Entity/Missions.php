@@ -6,10 +6,8 @@ use App\Repository\MissionsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Validator\MissionPlanques as MissionPlanques;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Mapping\ClassMetadata;
-
 #[ORM\Entity(repositoryClass: MissionsRepository::class)]
 class Missions
 {
@@ -62,6 +60,9 @@ class Missions
 
     #[ORM\Column(type: 'date', nullable: true)]
     private $date_fin;
+
+
+
 
     public function __construct()
     {
@@ -232,6 +233,7 @@ class Missions
     {
         if (!$this->planques->contains($planque)) {
             $this->planques[] = $planque;
+           
         }
 
         return $this;
@@ -243,6 +245,7 @@ class Missions
 
         return $this;
     }
+    
 
     public function getSpecialite(): ?Specialites
     {
@@ -280,11 +283,11 @@ class Missions
         return $this;
     }
     
-    
     public function __toString()
     {
         return $this->titre;
     }
+
 
     
 }

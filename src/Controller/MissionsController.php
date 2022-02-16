@@ -60,13 +60,12 @@ class MissionsController extends AbstractController
     {
         $mission = new Missions();
         $form = $this->createForm(MissionsType::class, $mission);
-        
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid() && $mission->getPlanques()[0]) {
-            $mission->setPays($mission->getPlanques()[0]->getPays());
+            //$mission->setPaysDeLaPlanque(intval($mission->getPlanques()[0]->getPays()->getId()));
             $entityManager->persist($mission);
             $entityManager->flush();
-
+           
             return $this->redirectToRoute('missions_index',array(
                 'page' => 1,
                 ),  Response::HTTP_SEE_OTHER);
@@ -95,6 +94,7 @@ class MissionsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
             $entityManager->flush();
 
             return $this->redirectToRoute('missions_index',array(
