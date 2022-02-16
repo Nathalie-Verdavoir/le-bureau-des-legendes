@@ -20,11 +20,9 @@ class PlanquesType extends AbstractType
                 'class' => Pays::class,
                 'choice_label' => 'nom',
                 'choice_value' => 'id',
-               # 'placeholder' => 'Pays d\'origine',
                 'label' => 'Pays d\'origine'
             ))
             ->add('type', TypeDePlanquesType::class, array('label' =>'Type de Planque'))
-            ->add('missions')
         ;
     }
 

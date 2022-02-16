@@ -131,4 +131,22 @@ class Cibles
 
         return $this;
     }
+    public function getPaysCibles()
+    {
+        $pays = $this->getNationalite();
+        
+        if($pays && strlen($pays) > 0)
+        {
+         return $pays;
+        }else
+        {
+            return 'Pays Inconnu';
+        } 
+       
+    }
+    
+    public function __toString()
+    {
+        return $this->nom_de_code. " (". $this->getPaysCibles(). ")";
+    }
 }

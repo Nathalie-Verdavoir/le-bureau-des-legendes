@@ -3,9 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Missions;
-use App\Entity\Pays;
 use App\Form\MissionsType;
 use App\Repository\MissionsRepository;
+use App\Validator\CiblesAgents;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,12 +57,14 @@ class MissionsController extends AbstractController
     #[Security("is_granted('ROLE_ADMIN')", statusCode: 404)]
     #[Route('/new', name: 'missions_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
+    { 
         $mission = new Missions();
-        $form = $this->createForm(MissionsType::class, $mission);
+        $form = $this->createForm(MissionsType::class, $mission,[
+           // 'validation_groups' => ['CiblesAgents','ContactsPays']
+           // 'constraints' => new CiblesAgents(),
+        ]);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid() && $mission->getPlanques()[0]) {
-            //$mission->setPaysDeLaPlanque(intval($mission->getPlanques()[0]->getPays()->getId()));
+        if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($mission);
             $entityManager->flush();
            
@@ -90,7 +92,10 @@ class MissionsController extends AbstractController
     #[Route('/{id}/edit', name: 'missions_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Missions $mission, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(MissionsType::class, $mission);
+        $form = $this->createForm(MissionsType::class, $mission,[
+            //'validation_groups' => ['CiblesAgents','ContactsPays']
+           // 'constraints' => new CiblesAgents(),
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

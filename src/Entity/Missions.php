@@ -48,7 +48,7 @@ class Missions
     private $statut;
 
     #[ORM\ManyToMany(targetEntity: Planques::class, inversedBy: 'missions', cascade: ["persist","remove"],fetch: 'EXTRA_LAZY')]
-    #[Assert\NotBlank()]
+    #[ORM\JoinColumn(nullable: true)]
     private $planques;
 
     #[ORM\ManyToOne(targetEntity: Specialites::class, inversedBy: 'missions')]

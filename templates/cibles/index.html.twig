@@ -8,18 +8,22 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Nom de code</th>
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>Date de naissance</th>
+                <th>Pays</th>
                 <th>Voir/Modifier</th>
             </tr>
         </thead>
         <tbody>
         {% for cible in cibles %}
             <tr>
+                <td>{{ cible.getNomDeCode.code }}</td>
                 <td>{{ cible.nom }}</td>
                 <td>{{ cible.prenom }}</td>
-                <td>{{ cible.dateDeNaissance ? cible.dateDeNaissance|date('Y-m-d') : '' }}</td>
+                <td>{{ cible.dateDeNaissance ? cible.dateDeNaissance|date('d/m/Y') : '' }}</td>
+                <td>{{ cible.nationalite }}</td>
                 <td>
                     <a type="button" class="btn" href="{{ path('cibles_show', {'id': cible.id}) }}">show</a>
                     <a type="button" class="btn" href="{{ path('cibles_edit', {'id': cible.id}) }}">edit</a>

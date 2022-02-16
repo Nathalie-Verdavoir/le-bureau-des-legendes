@@ -13,7 +13,6 @@ class SpecialitesType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('agents')
         ;
     }
 

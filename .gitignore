@@ -10,3 +10,5 @@
 /vendor/
 ###< symfony/framework-bundle ###
 node_modules
+public/dump.html
+public/dump.html
