@@ -12,6 +12,8 @@
                 <th>Description</th>
                 <th>Date_debut</th>
                 <th>Date_fin</th>
+                <th>Specialité requise</th>
+                <th>Agents affectés</th>
                 {% if app.user %}
                 <th>Voir/Modifier</th>
                 {% else %}
@@ -26,6 +28,8 @@
                 <td>{{ mission.description }}</td>
                 <td>{{ mission.dateDebut ? mission.dateDebut|date('Y-m-d') : '' }}</td>
                 <td>{{ mission.dateFin ? mission.dateFin|date('Y-m-d') : '' }}</td>
+                 <td>{{ mission.specialite }}</td>
+                 <td> {% for agent in mission.getAgents %}-{{agent|spaceless }}<br>{% endfor %}</td>
                 <td>
                     <a type="button" class="btn" href="{{ path('missions_show', {'id': mission.id}) }}">show</a>
                      {% if app.user %}

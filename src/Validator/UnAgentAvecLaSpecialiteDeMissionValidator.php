@@ -28,9 +28,9 @@ class UnAgentAvecLaSpecialiteDeMissionValidator extends ConstraintValidator
             return;
         }
 
-        if(!in_array($value,$ToutesLesSpecialitesDesAgents)){
+        if(!in_array( $values->getSpecialite(),$ToutesLesSpecialitesDesAgents)){
         $this->context->buildViolation($constraint->message)
-            ->setParameter('{{ value }}', $values)
+            ->setParameter('{{ value }}', $values->getSpecialite())
             ->addViolation();
         }
     }
