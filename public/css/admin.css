@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap');
+*{
+    font-family: 'Inconsolata', monospace;
+}
+
+body {
+    background-color: #555252;
+    color: whitesmoke;
+    font-size: 18px;
+}
+
+.main-content {
+    background-image:  url(../img/bg.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: right 5vw top 10vh;
+    background-size: 20%;
+}
+
+.content-header {
+    background-color: #555252;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    color: whitesmoke;
+}
+
+.table.datagrid,
+.page-item .page-link, .page-item .page-link:focus {
+    color: rgb(200, 137, 252);
+}
+
+ .page-item .page-link:hover {
+    color: #555252;
+    font-weight: 900;
+}
+
+.datagrid tbody tr.selected-row td,
+.datagrid tbody tr.selected-row:hover td:hover{
+    background: grey;
+}
+
+.form-group label, .form-group legend.col-form-label,
+a,
+.user-menu-wrapper a.user-details,
+.user-menu-wrapper a.user-details:hover,
+.datagrid thead a, 
+.datagrid thead span {
+    color: rgb(255, 145, 0);
+}
+
+.form-group label,
+.form-group legend.col-form-label,
+.form-control {
+    font-size: 1.5rem;
+}
+
+.btn-primary,
+.page-item.active .page-link {
+    background-color: rgb(127, 86, 160);
+}
+
+.sidebar {
+    background:rgb(61, 58, 58);
+    color: whitesmoke;
+}
+
+.main-header #header-logo a {
+    color: whitesmoke;
+}
+
+#main-menu .menu .menu-item-contents {
+    color: rgb(181, 241, 186);
+    display: block;
+    padding: 4px 0;
+}
