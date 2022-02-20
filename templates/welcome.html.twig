@@ -9,7 +9,6 @@
             <a type="button" class="btn" href="/admin">Admin</a>
         {% endif %}{% endif %}
             <a type="button" class="btn" href="{{ app.user ? path('logout') : path('login')}}">{{ app.user ? 'Logout' : 'Login' }}</a>
-            <a type="button" class="btn" href="/register">Register</a>
     </div>
     <div class="nav">
         <a type="button" class="btn" href="/">Accueil</a>
