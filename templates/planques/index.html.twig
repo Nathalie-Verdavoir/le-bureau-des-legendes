@@ -18,10 +18,10 @@
         <tbody>
         {% for planque in planques %}
             <tr>
-                <td>{{ planque.getCode.code }}</td>
-                <td>{{ planque.adresse }}</td>
-                <td>{{ planque.pays }}</td>
-                <td>{{ planque.type }}</td>
+                <td>{{ planque.getCode.code|e }}</td>
+                <td>{{ planque.adresse|e }}</td>
+                <td>{{ planque.pays|e}}</td>
+                <td>{{ planque.type|e }}</td>
                 <td>
                     <a type="button" class="btn" href="{{ path('planques_show', {'id': planque.id}) }}">show</a>
                     <a type="button" class="btn" href="{{ path('planques_edit', {'id': planque.id}) }}">edit</a>

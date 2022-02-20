@@ -17,9 +17,9 @@
         <tbody>
         {% for contact in contacts %}
             <tr>
-                <td>{{ contact.nom }}</td>
-                <td>{{ contact.prenom }}</td>
-                <td>{{ contact.dateDeNaissance ? contact.dateDeNaissance|date('Y-m-d') : '' }}</td>
+                <td>{{ contact.nom|e }}</td>
+                <td>{{ contact.prenom|e }}</td>
+                <td>{{ contact.dateDeNaissance ? contact.dateDeNaissance|e|date('Y-m-d') : '' }}</td>
                 <td>
                     <a type="button" class="btn" href="{{ path('contacts_show', {'id': contact.id}) }}">show</a>
                     <a type="button" class="btn" href="{{ path('contacts_edit', {'id': contact.id}) }}">edit</a>

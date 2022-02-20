@@ -15,7 +15,7 @@
         <tbody>
         {% for nom_de_code in nom_de_codes %}
             <tr>
-                <td>{{ nom_de_code.code }}</td>
+                <td>{{ nom_de_code.code|e }}</td>
                 <td>
                     <a type="button" class="btn" href="{{ path('nom_de_code_show', {'id': nom_de_code.id}) }}">show</a>
                     <a type="button" class="btn" href="{{ path('nom_de_code_edit', {'id': nom_de_code.id}) }}">edit</a>
@@ -30,7 +30,7 @@
     </table>
  {% if pageCount  is defined and pageCount  > 1 %}
         {% for i in 1..pageCount %}
-            <a type="button" class="btn paging" href="/nom_de_code/list/{{ i }}">{{ i }}</a>
+            <a type="button" class="btn paging" href="/nomdecode/list/{{ i }}">{{ i }}</a>
          {% endfor %}
          {% endif %}
          <br>
