@@ -25,7 +25,9 @@
         "symfony/security-bundle": "6.0.*",
         "symfony/twig-bundle": "6.0.*",
         "symfony/validator": "6.0.*",
-        "symfony/yaml": "6.0.*"
+        "symfony/yaml": "6.0.*",
+        
+        "symfony/monolog-bundle": "^3.7"
     },
     "require-dev": {
         "symfony/console": "6.0.*",
