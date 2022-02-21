@@ -4,6 +4,6 @@
 
 return array (
   'APP_ENV' => 'prod',
-  'DATABASE_URL' => 'mysql://root:@127.0.0.1:3306/le-bureau-des-legendes?serverVersion=MariaDB-10.4.21',
+  'DATABASE_URL' => 'mysql://root:root@127.0.0.1:3306/symfony',
   'APP_SECRET' => 'de1b96bc064b717b59ab7b070db4ef59',
 );
