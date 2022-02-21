@@ -30,6 +30,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $roles = [];
 
     #[ORM\Column(type: 'string')]
+    #[Assert\NotBlank(message:"Champ obligatoire")]
     private $password;
 
     #[ORM\Column(type: 'string', length: 70)]
