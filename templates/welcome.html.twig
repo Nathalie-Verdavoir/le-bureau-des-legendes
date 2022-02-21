@@ -4,8 +4,11 @@
 {% block header %}
     <h1>Bienvenue {{ app.user ? app.user :  'l\'inconnu'}}, il est {{ 'now'|date('H:i:s') }} à Paris!</h1>
     <div class="admin-buttons">
-    <a type="button" class="btn" href="{{ app.user ? path('logout') : path('login')}}">{{ app.user ? 'Logout' : 'Login' }}</a>
-    <a type="button" class="btn" href="/register">Register</a>
+        {% if app.user %}
+        {% if "ROLE_SUPER_ADMIN" in app.user.roles %}
+            <a type="button" class="btn" href="/admin">Admin</a>
+        {% endif %}{% endif %}
+            <a type="button" class="btn" href="{{ app.user ? path('logout') : path('login')}}">{{ app.user ? 'Logout' : 'Login' }}</a>
     </div>
     <div class="nav">
         <a type="button" class="btn" href="/">Accueil</a>

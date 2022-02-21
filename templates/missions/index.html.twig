@@ -9,9 +9,11 @@
         <thead>
             <tr>
                 <th>Titre</th>
+                <th>Nom de code</th>
                 <th>Description</th>
                 <th>Date_debut</th>
                 <th>Date_fin</th>
+                <th>Pays</th>
                 <th>Specialité requise</th>
                 <th>Agents affectés</th>
                 {% if app.user %}
@@ -24,17 +26,19 @@
         <tbody>
         {% for mission in missions %}
             <tr>
-                <td>{{ mission.titre }}</td>
-                <td>{{ mission.description }}</td>
-                <td>{{ mission.dateDebut ? mission.dateDebut|date('Y-m-d') : '' }}</td>
-                <td>{{ mission.dateFin ? mission.dateFin|date('Y-m-d') : '' }}</td>
-                 <td>{{ mission.specialite }}</td>
-                 <td> {% for agent in mission.getAgents %}-{{agent|spaceless }}<br>{% endfor %}</td>
+                <td>{{ mission.titre|e }}</td>
+                <td>{{ mission.nomdecode|e }}</td>
+                <td>{{ mission.description|e }}</td>
+                <td>{{ mission.dateDebut ? mission.dateDebut|e|date('Y-m-d') : '' }}</td>
+                <td>{{ mission.dateFin ? mission.dateFin|e|date('Y-m-d') : '' }}</td>
+                 <td>{{ mission.pays|e }}</td>
+                 <td>{{ mission.specialite|e }}</td>
+                 <td> {% for agent in mission.getAgents %}-{{agent|spaceless|e }}<br>{% endfor %}</td>
                 <td>
                     <a type="button" class="btn" href="{{ path('missions_show', {'id': mission.id}) }}">show</a>
-                     {% if app.user %}
+                     {% if app.user %} {% if "ROLE_ADMIN" in app.user.roles %}
                     <a type="button" class="btn" href="{{ path('missions_edit', {'id': mission.id}) }}">edit</a>
-                     {% endif %}
+                     {% endif %}{% endif %}
                 </td>
             </tr>
         {% else %}
@@ -50,5 +54,8 @@
          {% endfor %}
          {% endif %}
          <br>
+{% if app.user %}
+        {% if "ROLE_ADMIN" in app.user.roles %}
     <a type="button" class="btn" href="{{ path('missions_new') }}">Ajouter </a>
+ {% endif %} {% endif %}
 {% endblock %}
