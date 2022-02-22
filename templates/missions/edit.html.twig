@@ -3,7 +3,10 @@
 
 {% block main %}
     <h1>Edit Missions</h1>
+
+    {{ include('missions/_form.html.twig', {'button_label': 'Update'}) }}
+
     <a type="button" class="btn" href="{{ path('missions_index', {'page': 1})  }}">Retour</a>
-    {{ include('missions/_delete_form.html.twig', {'button_label': 'Supprimer'}) }}
-    {{ include('missions/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+
+    {{ include('missions/_delete_form.html.twig') }}
 {% endblock %}

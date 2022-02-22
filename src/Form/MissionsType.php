@@ -2,13 +2,10 @@
 
 namespace App\Form;
 
-use App\Entity\Agents;
-use App\Entity\Cibles;
-use App\Entity\Contacts;
 use App\Entity\Missions;
 use App\Entity\Pays;
-use App\Entity\Planques;
 use App\Entity\Specialites;
+use App\Repository\PlanquesRepository;
 use App\Validator\CiblesAgents;
 use App\Validator\ContactsPays;
 use App\Validator\MissionPlanques;
@@ -37,7 +34,6 @@ class MissionsType extends AbstractType
             ])
             ->add('nom_de_code', NomDeCodeAjouter::class, [
                 'attr' => ['class' => 'inlineForm'],
-                'label' => false
             ])
             ->add('type')
             ->add('statut')
@@ -49,34 +45,10 @@ class MissionsType extends AbstractType
                 'class' => Pays::class,
                 'constraints' => [new CiblesAgents(),new ContactsPays(),new MissionPlanques()],
             ])
-            ->add('planques', EntityType::class, array(
-                'class' => Planques::class,
-                'allow_extra_fields' => true,
-                'label' => 'Planques',
-                'expanded' =>true ,
-                'multiple'=> true,
-            ))
-            ->add('agents', EntityType::class, array(
-                'class' => Agents::class,
-                'allow_extra_fields' => true,
-                'label' => 'Agents',
-                'expanded' =>true ,
-                'multiple'=> true,
-            ))
-            ->add('contacts', EntityType::class, array(
-                'class' => Contacts::class,
-                'allow_extra_fields' => true,
-                'label' => 'Contacts',
-                'expanded' =>true ,
-                'multiple'=> true,
-            ))
-            ->add('Cibles', EntityType::class, array(
-                'class' => Cibles::class,
-                'allow_extra_fields' => true,
-                'label' => 'Cibles',
-                'expanded' =>true ,
-                'multiple'=> true,
-            ));
+            ->add('planques')
+            ->add('agents')
+            ->add('contacts')
+            ->add('Cibles');
            
         ;
         

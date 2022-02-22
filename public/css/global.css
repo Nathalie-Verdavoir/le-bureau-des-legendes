@@ -1,25 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap');
 
-* {
-    scrollbar-width: thin;
-    scrollbar-color: rgb(145, 145, 148) rgba(0, 0, 0, 0);
-  }
-  
-  /* Works on Chrome, Edge, and Safari */
-  *::-webkit-scrollbar {
-    width: 12px;
-  }
-  
-  *::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0);
-  }
-  
-  *::-webkit-scrollbar-thumb {
-    background-color: rgb(145, 145, 148);
-    border-radius: 20px;
-    border: 3px solid rgba(0, 0, 0, 0);
-  }
-
 html, 
 body {
 	margin: 0;
@@ -42,16 +22,11 @@ body {
     font-family: 'Inconsolata', monospace;
 }
 
-h1 {
+h1,
+form {
     margin-top: 4rem;
     margin-inline: 3rem;
 }
-
-form {
-    margin-top: 0;
-    margin-inline: 3rem;
-}
-
 
 .nav,
 .fond-gris {
@@ -75,11 +50,6 @@ select,
     margin-left: 3rem;
 }
 
-#agents_date_de_naissance,
-#agents_nom_de_code > div{
-    display: inline;
-}
-
 .btn {
     font-size: 1rem;
     background-color: #272f3b;
@@ -88,35 +58,9 @@ select,
     margin: 1rem;
 }
 
-.list {
-    background-color: rgb(59, 59, 59);
-    margin-left: 6rem;
-    width: 25vw;
-    max-height: 10vh;
-    display: block;
-    overflow: auto;
-    border-radius: 0.5rem;
-    margin-bottom: 0.8rem;
-}
-
-.list > * > * {
-    margin: 0;
-    margin-left: 0.5rem;
-    
-}
-
-.list.long {
-    width: auto;
-}
-
-
-form.delete {
-    margin-top:  0;
-    margin-inline:  0;
-}
-
 .admin-buttons {
     position: absolute;
+
     top: 1rem;
     right: 1rem;
 }
@@ -134,13 +78,6 @@ form.delete {
     padding: 20%;
 }
 
-.btn-edit {
-    display: inline-flex;
-    margin: 1rem;
-    margin-inline-start: 1rem;
-    padding-left: auto;
-    justify-content: center
-}
 .paging {
     display: inline-flex;
     margin: 0;

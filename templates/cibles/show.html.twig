@@ -9,19 +9,19 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ cible.id|e }}</td>
+                <td>{{ cible.id }}</td>
             </tr>
             <tr>
                 <th>Nom</th>
-                <td>{{ cible.nom|e }}</td>
+                <td>{{ cible.nom }}</td>
             </tr>
             <tr>
                 <th>Prénom</th>
-                <td>{{ cible.prenom|e }}</td>
+                <td>{{ cible.prenom }}</td>
             </tr>
             <tr>
                 <th>Date de naissance</th>
-                <td>{{ cible.dateDeNaissance|e ? cible.dateDeNaissance|e|date('Y-m-d') : '' }}</td>
+                <td>{{ cible.dateDeNaissance ? cible.dateDeNaissance|date('Y-m-d') : '' }}</td>
             </tr>
         </tbody>
     </table>

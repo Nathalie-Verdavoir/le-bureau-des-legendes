@@ -17,7 +17,7 @@
         {% for pay in pays %}
             {% if item  < 10 %}
                 <tr class="{{ item }}">
-                    <td>{{ pay.nom|e}}</td>
+                    <td>{{ pay.nom }}</td>
                     <td>
                         <a type="button" class="btn" href="{{ path('pays_show', {'id': pay.id}) }}">show</a>
                         <a type="button" class="btn" href="{{ path('pays_edit', {'id': pay.id}) }}">edit</a>

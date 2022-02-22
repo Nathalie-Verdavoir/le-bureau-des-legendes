@@ -15,7 +15,7 @@
         <tbody>
         {% for type_de_mission in type_de_missions %}
             <tr>
-                <td>{{ type_de_mission.nom|e }}</td>
+                <td>{{ type_de_mission.nom }}</td>
                 <td>
                     <a type="button" class="btn" href="{{ path('type_de_missions_show', {'id': type_de_mission.id}) }}">show</a>
                     <a type="button" class="btn" href="{{ path('type_de_missions_edit', {'id': type_de_mission.id}) }}">edit</a>
