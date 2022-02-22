@@ -15,7 +15,7 @@
         <tbody>
         {% for specialite in specialites %}
             <tr>
-                <td>{{ specialite.nom }}</td>
+                <td>{{ specialite.nom|e }}</td>
                 <td>
                     <a type="button" class="btn" href="{{ path('specialites_show', {'id': specialite.id}) }}">show</a>
                     <a type="button" class="btn" href="{{ path('specialites_edit', {'id': specialite.id}) }}">edit</a>

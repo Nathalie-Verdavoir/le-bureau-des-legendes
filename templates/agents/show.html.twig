@@ -9,27 +9,27 @@
         <tbody>
             <tr>
                 <th>Nom</th>
-                <td>{{ agent.nom }}</td>
+                <td>{{ agent.nom|e }}</td>
             </tr>
             <tr>
                 <th>Prénom</th>
-                <td>{{ agent.prenom }}</td>
+                <td>{{ agent.prenom|e }}</td>
             </tr>
             <tr>
                 <th>Date de naissance</th>
-                <td>{{ agent.dateDeNaissance ? agent.dateDeNaissance|date('d-m-Y') : '' }}</td>
+                <td>{{ agent.dateDeNaissance|e ? agent.dateDeNaissance|e|date('d-m-Y') : '' }}</td>
             </tr>
             <tr>
                 <th>Nom De Code</th>
-                <td>{{ agent.getNomDeCode.code }}</td>
+                <td>{{ agent.getNomDeCode.code|e }}</td>
             </tr>
             <tr>
                 <th>Spécialités</th>
-                <td> {% for specialites_id in agent.getSpecialites %}-{{specialites_id|spaceless }}<br>{% endfor %}</td>
+                <td> {% for specialites_id in agent.getSpecialites %}-{{specialites_id|spaceless|e }}<br>{% endfor %}</td>
             </tr>
             <tr>
                 <th>Pays d'origine</th>
-                <td>{{ agent.nationalite }}</td>
+                <td>{{ agent.nationalite|e }}</td>
             </tr>
         </tbody>
     </table>
