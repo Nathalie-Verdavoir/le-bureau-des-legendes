@@ -12,3 +12,4 @@
 node_modules
 public/dump.html
 public/dump.html
+migrations/Version20220213141142.php
