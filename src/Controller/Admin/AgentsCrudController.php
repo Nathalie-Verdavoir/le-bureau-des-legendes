@@ -27,7 +27,7 @@ class AgentsCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             Field::new('nom'),
             Field::new('prenom'),
-            DateTimeField::new('date_de_naissance')->setFormat('dd/MM/yyyy'),
+            Field::new('date_de_naissance'),
             AssociationField::new('specialites'),
             AssociationField::new('nom_de_code'),
             AssociationField::new('nationalite'),
