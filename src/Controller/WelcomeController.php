@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class WelcomeController extends AbstractController
 {
-    #[Route('/')]
+    #[Route('/', name: 'welcome')]
     public function index(): Response
     {
         return $this->render('welcome.html.twig');
