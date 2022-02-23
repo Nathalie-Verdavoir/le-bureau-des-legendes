@@ -26,7 +26,6 @@ class AgentsCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             Field::new('nom'),
             Field::new('prenom'),
-            DateField::new('date_de_naissance'),
             AssociationField::new('specialites'),
         ];
     }
