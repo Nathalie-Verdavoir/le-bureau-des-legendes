@@ -20,10 +20,10 @@
         <tbody>
         {% for agent in agents %}
             <tr>
-                <td>{{ agent.getNomDeCode.code|e }}</td>
-                <td>{{ agent.nom|e }}</td>
-                <td>{{ agent.prenom|e }}</td>
-                <td>{{ agent.dateDeNaissance ? agent.dateDeNaissance|e|date('d/m/Y') : '' }}</td>
+                <td>{{ agent.getNomDeCode.code }}</td>
+                <td>{{ agent.nom }}</td>
+                <td>{{ agent.prenom }}</td>
+                <td>{{ agent.dateDeNaissance ? agent.dateDeNaissance|date('d/m/Y') : '' }}</td>
                 <td> {% for specialites_id in agent.getSpecialites %}-{{specialites_id|spaceless }}<br>{% endfor %}</td>
                 <td>{{ agent.nationalite }}</td>
                 <td>

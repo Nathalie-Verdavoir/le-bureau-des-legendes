@@ -9,19 +9,19 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ contact.id|e }}</td>
+                <td>{{ contact.id }}</td>
             </tr>
             <tr>
                 <th>Nom</th>
-                <td>{{ contact.nom|e }}</td>
+                <td>{{ contact.nom }}</td>
             </tr>
             <tr>
                 <th>Prénom</th>
-                <td>{{ contact.prenom|e }}</td>
+                <td>{{ contact.prenom }}</td>
             </tr>
             <tr>
                 <th>Date de naissance</th>
-                <td>{{ contact.dateDeNaissance ? contact.dateDeNaissance|e|date('Y-m-d') : '' }}</td>
+                <td>{{ contact.dateDeNaissance ? contact.dateDeNaissance|date('Y-m-d') : '' }}</td>
             </tr>
         </tbody>
     </table>

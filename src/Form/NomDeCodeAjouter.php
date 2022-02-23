@@ -15,7 +15,7 @@ class NomDeCodeAjouter extends AbstractType
         $builder
             ->add('code', TypeTextType::class,[
                 'attr' => ['class' => 'inlineForm'],
-                'label' => 'Nom de code'
+                'label' => ' '
             ])
         ;
     }

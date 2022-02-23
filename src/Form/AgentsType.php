@@ -8,6 +8,7 @@ use App\Entity\Specialites;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,16 +23,14 @@ class AgentsType extends AbstractType
             ->add('date_de_naissance', BirthdayType::class)
             ->add('specialites', EntityType::class, array(
                 'class' => Specialites::class,
-                'allow_extra_fields' => true,
+                'choice_label' => 'nom',
+                'placeholder' => 'spécialités',
                 'label' => 'Spécialités',
                 'expanded' =>true ,
-                'multiple'=> true,
-                'row_attr' => ['class' => 'MaClass'],
+                'multiple'=> true
+                
             ))
-            ->add('nom_de_code', NomDeCodeAjouter::class,
-            [
-                'label' => false,
-            ])
+            ->add('nom_de_code', NomDeCodeAjouter::class)
 
             ->add('nationalite', EntityType::class, array(
                 'class' => Pays::class,

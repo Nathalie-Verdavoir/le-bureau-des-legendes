@@ -15,7 +15,7 @@
         <tbody>
         {% for status in statuses %}
             <tr>
-                <td>{{ status.etat|e }}</td>
+                <td>{{ status.etat }}</td>
                 <td>
                     <a type="button" class="btn" href="{{ path('status_show', {'id': status.id}) }}">show</a>
                     <a type="button" class="btn" href="{{ path('status_edit', {'id': status.id}) }}">edit</a>

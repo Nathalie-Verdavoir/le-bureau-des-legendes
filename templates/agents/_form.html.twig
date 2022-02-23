@@ -1,18 +1,7 @@
- <div class="my-custom-class-for-errors  btn-edit"> <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
-        {{ form_errors(form) }}
-</div>
 {{ form_start(form) }}
-    {{ form_row(form.nom) }}
-    {{ form_row(form.prenom) }}
-    {{ form_row(form.date_de_naissance) }}
-    {{ form_row(form.nom_de_code) }}{{ form_row(form.nationalite) }}
-    {{ form_label(form.specialites) }} 
-        <div id="list">
-            {% for field in form.specialites %}
-                <div class="checkbox-list">
-                    {{ form_widget(field) }}
-                    {{ form_label(field) }}
-                </div>
-            {% endfor %}
-        </div>
+ <div class="my-custom-class-for-errors">
+        {{ form_errors(form) }}
+    </div>
+  
+    <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}
