@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -26,7 +27,7 @@ class AgentsCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             Field::new('nom'),
             Field::new('prenom'),
-            DateField::new('date_de_naissance')->setFormat('dd/MM/yyyy'),
+            DateTimeField::new('date_de_naissance')->setFormat('dd/MM/yyyy'),
             AssociationField::new('specialites'),
             AssociationField::new('nom_de_code'),
             AssociationField::new('nationalite'),
