@@ -21,8 +21,8 @@
                 <td>{{ contact.prenom }}</td>
                 <td>{{ contact.dateDeNaissance ? contact.dateDeNaissance|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a type="button" class="btn" href="{{ path('contacts_show', {'id': contact.id}) }}">show</a>
-                    <a type="button" class="btn" href="{{ path('contacts_edit', {'id': contact.id}) }}">edit</a>
+                    <a type="button" class="btn" href="{{ path('contacts_show', {'id': contact.id}) }}">Voir</a>
+                    <a type="button" class="btn" href="{{ path('contacts_edit', {'id': contact.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}

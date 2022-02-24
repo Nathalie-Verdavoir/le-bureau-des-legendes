@@ -19,16 +19,16 @@
                 <tr class="{{ item }}">
                     <td>{{ pay.nom }}</td>
                     <td>
-                        <a type="button" class="btn" href="{{ path('pays_show', {'id': pay.id}) }}">show</a>
-                        <a type="button" class="btn" href="{{ path('pays_edit', {'id': pay.id}) }}">edit</a>
+                        <a type="button" class="btn" href="{{ path('pays_show', {'id': pay.id}) }}">Voir</a>
+                        <a type="button" class="btn" href="{{ path('pays_edit', {'id': pay.id}) }}">Modifier</a>
                     </td>
                 </tr>
             {% else %}
                 <tr class="visually-hidden">
                     <td>{{ item }}  {{pay.nom }}</td>
                     <td>
-                        <a type="button" class="btn" href="{{ path('pays_show', {'id': pay.id}) }}">show</a>
-                        <a type="button" class="btn" href="{{ path('pays_edit', {'id': pay.id}) }}">edit</a>
+                        <a type="button" class="btn" href="{{ path('pays_show', {'id': pay.id}) }}">Voir</a>
+                        <a type="button" class="btn" href="{{ path('pays_edit', {'id': pay.id}) }}">Modifier</a>
                     </td>
                 </tr>
             {% endif %}

@@ -4,10 +4,7 @@
 
 {% block main %}
     <h1>Edit Nom De Code</h1>
-
-    {{ include('nom_de_code/_form.html.twig', {'button_label': 'Update'}) }}
-
     <a type="button" class="btn" href="{{ path('nom_de_code_index', {'page': 1}) }}">Retour</a>
-
     {{ include('nom_de_code/_delete_form.html.twig') }}
+    {{ include('nom_de_code/_form.html.twig', {'button_label': 'Enregistrer'}) }}
 {% endblock %}

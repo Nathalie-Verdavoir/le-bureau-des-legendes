@@ -4,8 +4,8 @@
 
 {% block main %}
     <h1>Ajouter Cibles</h1>
-
+    <a type="button" class="btn" href="{{ path('cibles_index', {'page': 1}) }}">Retour</a>
     {{ include('cibles/_form.html.twig') }}
 
-    <a type="button" class="btn" href="{{ path('cibles_index', {'page': 1}) }}">Retour</a>
+
 {% endblock %}

@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 #[Security("is_granted('ROLE_ADMIN')", statusCode: 404)]
-#[Route('/typedeplanques')]
+#[Route('/type_de_planques')]
 class TypeDePlanquesController extends AbstractController
 {
     #[Route('/', name: 'type_de_planques_index', methods: ['GET'])]

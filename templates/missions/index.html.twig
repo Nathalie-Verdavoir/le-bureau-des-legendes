@@ -31,9 +31,9 @@
                  <td>{{ mission.specialite }}</td>
                  <td> {% for agent in mission.getAgents %}-{{agent|spaceless }}<br>{% endfor %}</td>
                 <td>
-                    <a type="button" class="btn" href="{{ path('missions_show', {'id': mission.id}) }}">show</a>
+                    <a type="button" class="btn" href="{{ path('missions_show', {'id': mission.id}) }}">Voir</a>
                      {% if app.user %}
-                    <a type="button" class="btn" href="{{ path('missions_edit', {'id': mission.id}) }}">edit</a>
+                    <a type="button" class="btn" href="{{ path('missions_edit', {'id': mission.id}) }}">Modifier</a>
                      {% endif %}
                 </td>
             </tr>

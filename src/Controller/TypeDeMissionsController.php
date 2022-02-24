@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 #[Security("is_granted('ROLE_ADMIN')", statusCode: 404)]
-#[Route('/typedemissions')]
+#[Route('/type_de_missions')]
 class TypeDeMissionsController extends AbstractController
 {
     #[Route('/', name: 'type_de_missions_index', methods: ['GET'])]

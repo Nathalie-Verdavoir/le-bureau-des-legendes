@@ -13,7 +13,7 @@ class TypeDePlanquesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', TypeTextType::class, array('label'=>' '))
+            ->add('nom', TypeTextType::class, array('attr' => ['class' => 'inlineForm'],'label'=>'Type de Planque'))
         ;
     }
 
