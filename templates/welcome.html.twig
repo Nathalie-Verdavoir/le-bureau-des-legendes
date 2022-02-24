@@ -2,7 +2,7 @@
 {% block title %}Welcome{% endblock %}
 
 {% block header %}
-    <h1>Bienvenue {{ app.user ? app.user :  'l\'inconnu'}}, il est {{ 'now'|date('H:i:s') }} à Paris!</h1>
+    <h1>Bienvenue {{ app.user ? app.user :  'l\'inconnu'}}, il est {{ 'now'|date('H:i:s', "Europe/Paris") }} à Paris!</h1>
     <div class="admin-buttons">
     {% if app.user %}
         {% if "ROLE_SUPER_ADMIN" in app.user.roles %}
