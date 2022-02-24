@@ -5,7 +5,7 @@
 {% block main %}
     <h1>Ajouter Status</h1>
 
-    {{ include('status/_form.html.twig') }}
-
     <a type="button" class="btn" href="{{ path('status_index', {'page': 1}) }}">Retour</a>
+
+    {{ include('status/_form.html.twig') }}
 {% endblock %}

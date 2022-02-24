@@ -25,8 +25,8 @@
                 <td>{{ cible.dateDeNaissance ? cible.dateDeNaissance|date('d/m/Y') : '' }}</td>
                 <td>{{ cible.nationalite }}</td>
                 <td>
-                    <a type="button" class="btn" href="{{ path('cibles_show', {'id': cible.id}) }}">show</a>
-                    <a type="button" class="btn" href="{{ path('cibles_edit', {'id': cible.id}) }}">edit</a>
+                    <a type="button" class="btn" href="{{ path('cibles_show', {'id': cible.id}) }}">Voir</a>
+                    <a type="button" class="btn" href="{{ path('cibles_edit', {'id': cible.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}

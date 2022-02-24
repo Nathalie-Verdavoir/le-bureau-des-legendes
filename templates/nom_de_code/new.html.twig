@@ -5,7 +5,7 @@
 {% block main %}
     <h1>Ajouter Nom De Code</h1>
 
-    {{ include('nom_de_code/_form.html.twig') }}
-
     <a type="button" class="btn" href="{{ path('nom_de_code_index', {'page': 1}) }}">Retour</a>
+
+    {{ include('nom_de_code/_form.html.twig') }}
 {% endblock %}

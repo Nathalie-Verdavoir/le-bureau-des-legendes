@@ -20,22 +20,24 @@ class AgentsType extends AbstractType
         $builder
             ->add('nom', TextType::class)
             ->add('prenom', TextType::class)
-            ->add('date_de_naissance', BirthdayType::class)
-            ->add('specialites', EntityType::class, array(
-                'class' => Specialites::class,
-                'choice_label' => 'nom',
-                'placeholder' => 'spécialités',
-                'label' => 'Spécialités',
-                'expanded' =>true ,
-                'multiple'=> true
-                
-            ))
-            ->add('nom_de_code', NomDeCodeAjouter::class)
-
+            ->add('date_de_naissance', BirthdayType::class,[
+                'attr' => ['class' => 'inlineForm'],
+            ])
+            ->add('nom_de_code', NomDeCodeAjouter::class, [
+                'attr' => ['class' => 'inlineForm'],
+                'label' => false
+            ])
             ->add('nationalite', EntityType::class, array(
                 'class' => Pays::class,
                 'choice_label' => 'nom',              
                 'label' => 'Pays d\'origine'
+            ))
+            ->add('specialites', EntityType::class, array(
+                'class' => Specialites::class,
+                'allow_extra_fields' => true,
+                'label' => 'Spécialites',
+                'expanded' =>true ,
+                'multiple'=> true,
             ))
         ;
     }

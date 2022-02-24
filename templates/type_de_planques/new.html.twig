@@ -4,8 +4,6 @@
 
 {% block main %}
     <h1>Ajouter TypeDePlanques</h1>
-
+   <a type="button" class="btn" href="{{ path('type_de_planques_index', {'page': 1}) }}">Retour</a>
     {{ include('type_de_planques/_form.html.twig') }}
-
-    <a type="button" class="btn" href="{{ path('type_de_planques_index', {'page': 1}) }}">Retour</a>
 {% endblock %}

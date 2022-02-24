@@ -15,14 +15,20 @@ class PlanquesType extends AbstractType
     {
         $builder
             ->add('adresse')
-            ->add('code', NomDeCodeAjouter::class)
+            ->add('code', NomDeCodeAjouter::class, [
+                'attr' => ['class' => 'inlineForm'],
+                'label' => false
+            ])
             ->add('pays', EntityType::class, array(
                 'class' => Pays::class,
                 'choice_label' => 'nom',
                 'choice_value' => 'id',
                 'label' => 'Pays d\'origine'
             ))
-            ->add('type', TypeDePlanquesType::class, array('label' =>'Type de Planque'))
+            ->add('type', TypeDePlanquesType::class, array(
+                'attr' => ['class' => 'inlineForm'],
+                'label' => false
+            ))
         ;
     }
 

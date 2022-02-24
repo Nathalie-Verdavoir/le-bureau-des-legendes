@@ -3,11 +3,8 @@
 {% block title %}Edit Cibles{% endblock %}
 
 {% block main %}
-    <h1>Edit Cibles</h1>
-
-    {{ include('cibles/_form.html.twig', {'button_label': 'Update'}) }}
-
+    <h1>Edit Cibles</h1> 
     <a type="button" class="btn" href="{{ path('cibles_index', {'page': 1}) }}">Retour</a>
-
     {{ include('cibles/_delete_form.html.twig') }}
+    {{ include('cibles/_form.html.twig', {'button_label': 'Enregistrer'}) }}
 {% endblock %}

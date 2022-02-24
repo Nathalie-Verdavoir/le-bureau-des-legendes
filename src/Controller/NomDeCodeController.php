@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 #[Security("is_granted('ROLE_ADMIN')", statusCode: 404)]
-#[Route('/nomdecode')]
+#[Route('/nom_de_code')]
 class NomDeCodeController extends AbstractController
 {
     #[Route('/', name: 'nom_de_code_index', methods: ['GET'])]

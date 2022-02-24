@@ -13,11 +13,6 @@ class NomDeCodeType extends AbstractType
     {
         $builder
             ->add('code')
-            ->add('agents')
-            ->add('cibles')
-            ->add('contacts')
-            ->add('planques')
-            ->add('missions')
         ;
     }
 

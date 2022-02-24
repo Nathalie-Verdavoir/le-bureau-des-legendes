@@ -3,8 +3,7 @@
 {% block title %}Agents{% endblock %}
 
 {% block main %}
-    <h1>Agents</h1><a type="button" class="btn btn-primary" href="/">Accueil</a>
-
+    <h1>Agents</h1>
     <table class="table">
         <thead>
             <tr>
@@ -27,8 +26,8 @@
                 <td> {% for specialites_id in agent.getSpecialites %}-{{specialites_id|spaceless }}<br>{% endfor %}</td>
                 <td>{{ agent.nationalite }}</td>
                 <td>
-                    <a type="button" class="btn btn-primary" href="{{ path('agents_show', {'id': agent.id}) }}">show</a>
-                    <a type="button" class="btn btn-primary" href="{{ path('agents_edit', {'id': agent.id}) }}">edit</a>
+                    <a type="button" class="btn btn-primary" href="{{ path('agents_show', {'id': agent.id}) }}">Voir</a>
+                    <a type="button" class="btn btn-primary" href="{{ path('agents_edit', {'id': agent.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}

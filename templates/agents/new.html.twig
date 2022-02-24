@@ -5,8 +5,8 @@
 {% block main %}
 
     <h1>Ajouter Agents</h1>
-
+ <a type="button" class="btn" href="{{ path('agents_index', {'page': 1}) }}">Retour</a>
     {{ include('agents/_form.html.twig') }}
 
-    <a type="button" class="btn" href="{{ path('agents_index', {'page': 1}) }}">Retour</a>
+   
 {% endblock %}
