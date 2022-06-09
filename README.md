@@ -1,4 +1,4 @@
-# le bureau des legendes
+# Le bureau des légendes
 
 [Accéder à l'application en ligne](https://le-bureau-des-legendes.herokuapp.com/)
 
