@@ -12,7 +12,7 @@ class CiblesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('contact', PersonType::class, [
+            ->add('cibles', PersonType::class, [
                 'data_class' => Cibles::class,
             ])
         ;
