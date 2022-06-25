@@ -19,8 +19,6 @@ final class Version20220213141142 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        // this up() migration is auto-generated, please modify it to your needs
-        //$this->addSql('ALTER TABLE missions CHANGE pays_id pays_id INT NOT NULL');
     }
 
     public function down(Schema $schema): void

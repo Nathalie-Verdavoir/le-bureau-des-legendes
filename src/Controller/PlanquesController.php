@@ -53,8 +53,6 @@ class PlanquesController extends AbstractController
                 'planques' => $paginator,
                 'pageCount' => $pageCount
             ]);
-        // return stuff..
-    // return [$userList, $totalItems, $pageCount];
     }
 
     #[Route('/new', name: 'planques_new', methods: ['GET', 'POST'])]
