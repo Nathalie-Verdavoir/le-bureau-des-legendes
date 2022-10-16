@@ -7,7 +7,7 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 class CiblesAgentsValidator extends ConstraintValidator
 {
-    public function validate($value, Constraint $constraint): void
+    public function validate(mixed $value, Constraint $constraint): void
     {
         /* @var $constraint \App\Validator\CiblesAgents */
 

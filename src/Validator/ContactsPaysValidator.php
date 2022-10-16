@@ -7,7 +7,7 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 class ContactsPaysValidator extends ConstraintValidator
 {
-    public function validate($value, Constraint $constraint): void
+    public function validate(mixed $value, Constraint $constraint): void
     {
         /* @var $constraint \App\Validator\ContactsPays */
 
