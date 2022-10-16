@@ -25,7 +25,7 @@ class TypeDePlanquesController extends AbstractController
     }
 
     #[Route('/list/{page<\d+>}', name:'type_de_planques_index')]
-    public function getItemsByPage(TypeDePlanquesRepository $typeDePlanquesRepository,int $page = 1 )
+    public function getItemsByPage(TypeDePlanquesRepository $typeDePlanquesRepository,int $page = 1 ): Response
     {
         $query = $typeDePlanquesRepository  ->createQueryBuilder('i')
                                             ->orderBy('i.nom', 'ASC')

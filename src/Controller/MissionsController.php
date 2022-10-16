@@ -25,7 +25,7 @@ class MissionsController extends AbstractController
     }
     
     #[Route('/list/{page}', name:'missions_index')]
-    public function getItemsByPage(MissionsRepository $missionsRepository,int $page = 1)
+    public function getItemsByPage(MissionsRepository $missionsRepository,int $page = 1): Response
     {
         $query = $missionsRepository    ->createQueryBuilder('i')
                                         ->orderBy('i.titre', 'ASC')

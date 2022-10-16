@@ -25,7 +25,7 @@ class StatusController extends AbstractController
     }
 
     #[Route('/list/{page<\d+>}', name:'status_list')]
-    public function getItemsByPage(StatusRepository $statusRepository,int $page = 1)
+    public function getItemsByPage(StatusRepository $statusRepository,int $page = 1): Response
     {
         $query = $statusRepository  ->createQueryBuilder('i')
                                     ->orderBy('i.etat', 'ASC')

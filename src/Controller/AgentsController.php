@@ -25,7 +25,7 @@ class AgentsController extends AbstractController
     }
 
     #[Route('/list/{page<\d+>}', name:'agents_index')]
-    public function getItemsByPage( AgentsRepository $agentsRepository,int $page = 1)
+    public function getItemsByPage( AgentsRepository $agentsRepository,int $page = 1): Response
     {
         $query = $agentsRepository  ->createQueryBuilder('i')
                                     ->orderBy('i.nom', 'ASC')

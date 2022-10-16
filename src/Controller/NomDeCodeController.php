@@ -25,7 +25,7 @@ class NomDeCodeController extends AbstractController
     }
 
     #[Route('/list/{page<\d+>}', name:'nom_de_code_index')]
-    public function getItemsByPage(NomDeCodeRepository $nomDeCodeRepository,int $page = 1)
+    public function getItemsByPage(NomDeCodeRepository $nomDeCodeRepository,int $page = 1): Response
     {
         $query = $nomDeCodeRepository   ->createQueryBuilder('i')
                                         ->orderBy('i.code', 'ASC')

@@ -163,7 +163,7 @@ class Agents
         return $this;
     }
     
-    public function getToutesLesSpecialites()
+    public function getToutesLesSpecialites(): string
     {
         $spe = $this->getSpecialites();
         $text ='';
@@ -183,7 +183,7 @@ class Agents
         return $text;
     }
 
-    public function getPaysAgent()
+    public function getPaysAgent(): Pays
     {
         $pays = $this->getNationalite();
         

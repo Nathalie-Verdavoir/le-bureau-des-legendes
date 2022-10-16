@@ -25,7 +25,7 @@ class PaysController extends AbstractController
     }
 
     #[Route('/list/{page<\d+>}', name:'pays_list')]
-    public function getItemsByPage(PaysRepository $paysRepository,int $page = 1)
+    public function getItemsByPage(PaysRepository $paysRepository,int $page = 1): Response
     {
         $query = $paysRepository    ->createQueryBuilder('i')
                                     ->orderBy('i.nom', 'ASC')

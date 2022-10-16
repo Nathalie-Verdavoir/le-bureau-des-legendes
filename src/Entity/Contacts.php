@@ -131,7 +131,7 @@ class Contacts
 
         return $this;
     }
-    public function getPaysContacts()
+    public function getPaysContacts(): Pays
     {
         $pays = $this->getNationalite();
         

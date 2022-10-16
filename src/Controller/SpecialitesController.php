@@ -25,7 +25,7 @@ class SpecialitesController extends AbstractController
     }
 
     #[Route('/list/{page<\d+>}', name:'specialites_list')]
-    public function getItemsByPage(SpecialitesRepository $specialitesRepository,int $page = 1)
+    public function getItemsByPage(SpecialitesRepository $specialitesRepository,int $page = 1): Response
     {
         $query = $specialitesRepository ->createQueryBuilder('i')
                                         ->orderBy('i.nom', 'ASC')

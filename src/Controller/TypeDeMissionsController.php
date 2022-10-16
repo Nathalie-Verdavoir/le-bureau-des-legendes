@@ -25,7 +25,7 @@ class TypeDeMissionsController extends AbstractController
     }
 
     #[Route('/list/{page<\d+>}', name:'type_de_missions_list')]
-    public function getItemsByPage(TypeDeMissionsRepository $typeDeMissionsRepository,int $page = 1)
+    public function getItemsByPage(TypeDeMissionsRepository $typeDeMissionsRepository,int $page = 1): Response
     {
         $query = $typeDeMissionsRepository  ->createQueryBuilder('i')
                                             ->orderBy('i.nom', 'ASC')

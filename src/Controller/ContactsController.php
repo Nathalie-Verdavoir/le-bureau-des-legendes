@@ -25,7 +25,7 @@ class ContactsController extends AbstractController
     }
 
     #[Route('/list/{page<\d+>}', name:'contacts_index')]
-    public function getItemsByPage(ContactsRepository $contactsRepository,int $page = 1)
+    public function getItemsByPage(ContactsRepository $contactsRepository,int $page = 1): Response
     {
         $query = $contactsRepository    ->createQueryBuilder('i')
                                         ->orderBy('i.nom', 'ASC')

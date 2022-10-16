@@ -7,7 +7,7 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 class MissionPlanquesValidator extends ConstraintValidator
 {
-    public function validate($value, Constraint $constraint)
+    public function validate($value, Constraint $constraint): void
     {
         $values = $this->context->getRoot()->getData();
         foreach($values->getPlanques() as $planque)

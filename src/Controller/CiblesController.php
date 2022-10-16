@@ -25,7 +25,7 @@ class CiblesController extends AbstractController
     }
 
     #[Route('/list/{page<\d+>}', name:'cibles_index')]
-    public function getItemsByPage( CiblesRepository $ciblesRepository,int $page = 1)
+    public function getItemsByPage( CiblesRepository $ciblesRepository,int $page = 1): Response
     {
         $query = $ciblesRepository  ->createQueryBuilder('i')
                                     ->orderBy('i.nom', 'ASC')
