@@ -131,7 +131,7 @@ class Cibles
 
         return $this;
     }
-    public function getPaysCibles(): Pays
+    public function getPaysCibles(): mixed
     {
         $pays = $this->getNationalite();
         

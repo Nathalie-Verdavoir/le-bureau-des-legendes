@@ -183,7 +183,7 @@ class Agents
         return $text;
     }
 
-    public function getPaysAgent(): Pays
+    public function getPaysAgent(): mixed
     {
         $pays = $this->getNationalite();
         
